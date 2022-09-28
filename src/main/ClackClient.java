@@ -62,7 +62,7 @@ public class ClackClient {
         return "The client's username is" + this.userName + ". The current host Name is " +
                 this.hostName + ". The current port number is " + this.port +
                  ". The current status of the connection being closed is " + this.closeConnection +
-                  ". The data sent to the server is " + this.dataToSendToServer +
-                   ". The data received from the server is " + this.dataToReceiveFromServer + ".";
+                  ". The data sent to the server is:\n" + this.dataToSendToServer +
+                   "\nThe data received from the server is:\n" + this.dataToReceiveFromServer;
     }
 }

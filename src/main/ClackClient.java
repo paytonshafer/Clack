@@ -48,14 +48,14 @@ public class ClackClient {
 
     public int getPort(){return port;}
 
-    public int hashCode(){return userName.length()*hostName.length()*port;}
+    public int hashCode(){return userName.hashCode()*hostName.hashCode()*port*
+                          dataToReceiveFromServer.hashCode()*dataToSendToServer.hashCode();}
 
     public boolean equals(Object obj){
         ClackClient other = (ClackClient) obj;
         return this.hostName.equals(other.hostName) && this.userName.equals(other.userName) &&
-                this.closeConnection == other.closeConnection && this.port == other.port &&
-                 this.dataToSendToServer.equals(other.dataToSendToServer) &&
-                  this.dataToReceiveFromServer.equals(other.dataToReceiveFromServer);
+                this.port == other.port && this.dataToSendToServer.equals(other.dataToSendToServer) &&
+                 this.dataToReceiveFromServer.equals(other.dataToReceiveFromServer);
     }
 
     public String toString(){

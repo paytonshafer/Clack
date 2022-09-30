@@ -48,21 +48,19 @@ public class ClackClient {
 
     public int getPort(){return port;}
 
-    public int hashCode(){return userName.hashCode()*hostName.hashCode()*port*
-                          dataToReceiveFromServer.hashCode()*dataToSendToServer.hashCode();}
+    public int hashCode(){return userName.hashCode()*hostName.hashCode()*port;}
 
     public boolean equals(Object obj){
         ClackClient other = (ClackClient) obj;
         return this.hostName.equals(other.hostName) && this.userName.equals(other.userName) &&
-                this.port == other.port && this.dataToSendToServer.equals(other.dataToSendToServer) &&
-                 this.dataToReceiveFromServer.equals(other.dataToReceiveFromServer);
+                this.port == other.port;
     }
 
     public String toString(){
-        return "The client's username is" + this.userName + ". The current host Name is " +
-                this.hostName + ". The current port number is " + this.port +
-                 ". The current status of the connection being closed is " + this.closeConnection +
-                  ". The data sent to the server is:\n" + this.dataToSendToServer +
+        return "The client's username is " + this.userName + ".\nThe current host Name is " +
+                this.hostName + ".\nThe current port number is " + this.port +
+                 ".\nThe current status of the connection being closed is " + this.closeConnection +
+                  ".\nThe data sent to the server is:\n" + this.dataToSendToServer +
                    "\nThe data received from the server is:\n" + this.dataToReceiveFromServer;
     }
 }

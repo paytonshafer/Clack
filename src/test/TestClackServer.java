@@ -1,6 +1,5 @@
 package test;
 
-import main.ClackClient;
 import main.ClackServer;
 
 public class TestClackServer {

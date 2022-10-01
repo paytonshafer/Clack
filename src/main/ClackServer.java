@@ -28,12 +28,11 @@ public class ClackServer {
 
     public int getPort() {return port;}
 
-    public int hashCode(){return port*dataToReceiveFromClient.hashCode()*dataToSendToClient.hashCode();}
+    public int hashCode(){return port;}
 
     public boolean equals(Object obj) {
         ClackServer other = (ClackServer) obj;
-        return this.port == other.port && this.dataToSendToClient.equals(other.dataToSendToClient) &&
-                this.dataToReceiveFromClient.equals(other.dataToReceiveFromClient);
+        return this.port == other.port;
     }
 
     public String toString(){

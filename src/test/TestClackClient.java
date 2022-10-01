@@ -25,8 +25,8 @@ public class TestClackClient {
             System.out.println("client 1 and client 3 are not equal");
 
         System.out.println("The hash code of client 1 is " + client1.hashCode());
-        System.out.println("The hash code of client 2 is " + client1.hashCode());
-        System.out.println("The hash code of client 3 is " + client1.hashCode());
+        System.out.println("The hash code of client 2 is " + client2.hashCode());
+        System.out.println("The hash code of client 3 is " + client3.hashCode());
 
         System.out.println(client1);
 

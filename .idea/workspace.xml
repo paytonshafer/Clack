@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d90899e3-030a-4f46-9418-799255edfd73" name="Changes" comment="added test">
-      <change beforePath="$PROJECT_DIR$/src/test/TestClackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestClackClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/TestClackServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestClackServer.java" afterDir="false" />
+    <list default="true" id="d90899e3-030a-4f46-9418-799255edfd73" name="Changes" comment="added tests, both client and server class are all set">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clack/main/ClackServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clack/test/TestClackClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clack/test/TestClackData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clack/test/TestClackServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ClackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ClackClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +117,35 @@
       <option name="project" value="LOCAL" />
       <updated>1664553569562</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added tests, both client and server class are all set">
+      <created>1664637749444</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1664637749444</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added tests, both client and server class are all set">
+      <created>1664637783912</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1664637783912</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added tests, both client and server class are all set">
+      <created>1664637976525</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1664637976525</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added tests, both client and server class are all set">
+      <created>1664638123175</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1664638123175</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,6 +167,7 @@
     <MESSAGE value="added test classes" />
     <MESSAGE value="all functions in" />
     <MESSAGE value="added test" />
-    <option name="LAST_COMMIT_MESSAGE" value="added test" />
+    <MESSAGE value="added tests, both client and server class are all set" />
+    <option name="LAST_COMMIT_MESSAGE" value="added tests, both client and server class are all set" />
   </component>
 </project>

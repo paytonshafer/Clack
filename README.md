@@ -83,4 +83,45 @@ public boolean equals(Object obj)
 */
 public String toString()
 
-ClackServer
+ClackServer:
+**
+ * The ClackServer class represents the server that clients connect to
+ * This class holds data for the server
+ */
+public class ClackServer
+
+    /**
+     * This is a constructor for the ClackServer class
+     * @param p This is the port number a client connects to
+     */
+    public ClackServer(int p)
+
+    /**
+     * This is the default constructor for the ClackServer class
+     */
+    public ClackServer()
+    
+    /**
+     * This functions returns the port number
+     * @return This returns the port number
+     */
+    public int getPort()
+    
+    /**
+     * This is a function to override hash code for the ClackServer object
+     * @return This returns a hash code such that equal objects have the same hash code
+     */
+    public int hashCode()
+    
+    /**
+     * This is a function to override the equals function for the ClackServer object
+     * @param obj This represents the other object the server is being compared to
+     * @return This returns true or false for whether the servers are equal
+     */
+    public boolean equals(Object obj)
+    
+    /**
+     * This is a function to override the toString function for the ClackServer object
+     * @return This returns the server as a string such that it can be printed out
+     */
+    public String toString()

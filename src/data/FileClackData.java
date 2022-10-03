@@ -16,7 +16,7 @@ public class FileClackData extends ClackData {
     public FileClackData(String userName, String fileName, int type) {
         super(userName, type);
         this.fileName = fileName;
-        this.fileContents = null;
+        this.fileContents = "";
     }
 
     /**
@@ -25,8 +25,8 @@ public class FileClackData extends ClackData {
      */
     public FileClackData () {
         super();
-        this.fileName = null;
-        this.fileContents = null;
+        this.fileName = "";
+        this.fileContents = "";
     }
 
     /**

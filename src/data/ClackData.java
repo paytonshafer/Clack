@@ -38,12 +38,13 @@ public abstract class ClackData {
         this("Anon", type);
     }
 
-    /**
+    /**:w
+     * 
      * Default constructor.
      * Sets all variables to null.
      */
     public ClackData () {
-        this.username = null;
+        this.username = "";
         this.type = -1;
         this.date = new Date();
     }

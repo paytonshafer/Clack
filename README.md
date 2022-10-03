@@ -14,5 +14,73 @@ FileClackData:
 
 main:
 ClackClient:
+/**
+ * The ClackClient class represents the client user
+ * The class holds the data of the client
+ */
+public class ClackClient
+
+/**
+* This is a constructor for the ClackClient class
+* @param u This is the username for the client
+* @param h This is the hostname the client is connected to
+* @param p This is the port number the client is connected to
+*/
+public ClackClient(String u, String h, int p)
+
+/**
+* This is a constructor for the ClackClient class
+* @param u This is the username for the client
+* @param h This is the hostname the client is connected to
+*/
+public ClackClient(String u, String h)
+
+/**
+* This is a constructor for the ClackClient class
+* @param u This is the username for the client
+*/
+public ClackClient(String u)
+
+/**
+* This is the default constructor
+*/
+public ClackClient()
+
+/**
+* This functions returns the clients username
+* @return This returns the clients username
+*/
+public String getUserName()
+
+/**
+* This functions returns the clients hostname
+* @return This returns the clients hostname
+*/
+public String getHostName()
+
+/**
+* This functions returns the clients port
+* @return This returns the clients port
+*/
+public int getPort()
+
+/**
+* This is a function to override hash code for the ClackClient object
+* @return This returns a hash code such that equal objects have the same hash code
+*/
+public int hashCode()
+
+/**
+* This is a function to override the equals function for the ClackClient object
+* @param obj This represents the other object the client is being compared to
+* @return This returns true or false for whether the clients are equal
+*/
+public boolean equals(Object obj)
+
+/**
+* This is a function to override the toString function for the ClackClient object
+* @return This returns the client as a string such that it can be printed out
+*/
+public String toString()
 
 ClackServer

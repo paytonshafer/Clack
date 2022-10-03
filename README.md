@@ -307,3 +307,7 @@ public class ClackServer
      * @return This returns the server as a string such that it can be printed out
      */
     public String toString()
+    
+## Testing
+
+We created a test package that includes three classes: TestClackClient, TestClackServer and TestClackData. Their only purpose is to test ClackClient class, ClackServer class and the data classes respectively.

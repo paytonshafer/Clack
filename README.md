@@ -6,11 +6,193 @@ A negative value as the port number just makes it so the value of the port is ne
 
 data:
 ClackData:
+/**
+* The ClackData class is an abstract class used to shape the FileClackData and MessageClackData.
+* */
+public abstract class ClackData
+
+/**
+* This is the main constructor for ClackData.
+* @param userName
+* @param type
+*/
+public ClackData(String userName, int type)
+
+/**
+* This is a special constructor that if used creates an anonymous user.
+* This constructor is called when a ClackData object is instantiated without
+* defining a username.
+*
+* In this case the username is defaulted to the value 'anon'
+* @param type
+*/
+public ClackData(int type)
+
+/**
+* Default constructor.
+* Sets all variables to null.
+*/
+public ClackData ()
+
+/**
+* Accessor function for variable type.
+* @return type
+*/
+public int getType()
+
+/**
+* Accessor function for variable username.
+* @return username
+*/
+public String getUserName()
+
+/**
+* Accessor function for variable date.
+* @return date
+*/
+public Date getDate()
+
+/**
+* Abstract class that returns the data a subclass is carrying.
+* @return data
+*/
+public abstract String getData()
 
 MessageClackData:
+/**
+ * The class MessageClackData holds all data regarding messages being
+ * sent by users.
+ */
+public class MessageClackData extends ClackData
+
+/**
+* Main constructor for the class.
+*
+* Calls the super constructor for variables username and type.
+* @param userName
+* @param message
+* @param type
+*/
+public MessageClackData(String userName, String message, int type)
+
+/**
+* Default constructor.
+* All values set to null.
+*/
+public MessageClackData
+
+/**
+* Returns the data of the class.
+*
+* In this case the data is the message value.
+* @return message
+*/
+public String getData ()
+
+/**
+* Overloading the toString() function.
+*
+* The function returns a string displaying all variables of the MessageClackData
+* object.
+* @return details about object
+*/
+public String toString()
+
+/**
+* Overloaded hashCode() function.
+*
+* It returns a unique hash code for each unique object.
+* @return hash code
+*/
+public int hashCode()
+
+/**
+* Overloaded equals() function.
+*
+* Will return a boolean value corresponding to whether the two objects
+* are equivalent or not.
+* @param other
+* @return True or False
+*/
+public boolean equals(Object other)
 
 FileClackData:
+/**
+ * The class FileClackData holds the data for files being transfered by users.
+ */
+ 
+/**
+* Main constructor for the class.
+* @param userName
+* @param fileName
+* @param type
+*/
+public FileClackData
 
+/**
+* Default constructor for the class.
+* Everything is set to null.
+*/
+public FileClackData
+
+/**
+* Mutator function for variable fileName.
+* @param fileName
+*/
+public void setFileName(String fileName)
+
+/**
+* Accessor function for variable fileName.
+* @return fileName
+*/
+public String getFileName()
+
+/**
+* Accessor function for data held in class.
+*
+* In this case the data is the contents of the file, therefore
+* it calls the accessor function writeFileContents().
+* @return data/fileContents
+*/
+public String getData()
+
+/**
+* Function will take the file name and read the contents of
+* the file.
+*/
+public void readFileContents()
+
+/**
+ * Function will take the opened file, and print the contents of the file.
+ */
+public void writeFileContents()
+
+/**
+* Overloading the toString() function.
+*
+* The function returns a string displaying all variables of the FileClackData
+* object.
+* @return details about object
+*/
+public String toString()
+
+/**
+* Overloaded hashCode() function.
+*
+* It returns a unique hash code for each unique object.
+* @return hash code
+*/
+public int hashCode()
+
+/**
+* Overloaded equals() function.
+*
+* Will return a boolean value corresponding to whether the two objects
+* are equivalent or not.
+* @param other
+* @return True or False
+*/
+public boolean equals(Object other)
 
 main:
 ClackClient:

@@ -4,13 +4,13 @@ public class FileClackData extends ClackData {
     private String fileName;
     private String fileContents;
 
-    FileClackData(String userName, String fileName, int type) {
+    public FileClackData(String userName, String fileName, int type) {
         super(userName, type);
         this.fileName = fileName;
         this.fileContents = null;
     }
 
-    FileClackData () {
+    public FileClackData () {
         super();
         this.fileName = null;
         this.fileContents = null;
@@ -24,9 +24,12 @@ public class FileClackData extends ClackData {
         return fileName;
     }
 
-    public FileClackData getData() {
-        return this;
+    public String getData() {
+        return writeFileContents();
     }
+
+    public void readFileContents() {}
+    public String writeFileContents() { return "";}
 
     public String toString() {
         return "The Username is: " + super.getUserName() + "\n" +

@@ -16,8 +16,8 @@ public class MessageClackData extends ClackData {
         this.message = "";
     }
 
-    public MessageClackData getData () {
-        return this;
+    public String getData () {
+        return message;
     }
 
     public String toString() {

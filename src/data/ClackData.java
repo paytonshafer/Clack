@@ -25,6 +25,7 @@ public abstract class ClackData {
     public ClackData () {
         this.username = null;
         this.type = -1;
+        this.date = new Date();
     }
 
     public int getType() {
@@ -39,5 +40,5 @@ public abstract class ClackData {
         return this.date;
     }
 
-    public abstract ClackData getData();
+    public abstract String getData();
 }

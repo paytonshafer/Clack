@@ -18,6 +18,7 @@ public class TestClackData {
         System.out.println("The Username of John's message data: " + messageData1.getUserName());
         System.out.println("The Type of the file data: " + fileData.getType());
         System.out.println("The Filename of the nullFData: " + fileData.getFileName());
+        System.out.println("The date of the John's message data: " + messageData1.getDate());
         System.out.println("+\n+\n");
         System.out.println("messageData1 equals messageData2: " + messageData1.equals(messageData2));
         System.out.println("fileData equals nullFdata: " + fileData.equals(nullFData));
@@ -29,8 +30,8 @@ public class TestClackData {
         System.out.println("messageData2's hashcode is: " + messageData1.hashCode());
         System.out.println("fileData's hashcode is: " + fileData.hashCode());
         System.out.println("nullFData's hashcode is: " + nullFData.hashCode());
-
-
-
+        System.out.println("+\n+\n");
+        System.out.println("John's message data is: " + messageData1);
+        System.out.println("fileData's data is: " + fileData);
     }
 }

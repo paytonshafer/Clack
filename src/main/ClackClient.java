@@ -16,8 +16,9 @@ public class ClackClient {
     private boolean closeConnection;
     private ClackData dataToSendToServer;
     private ClackData dataToReceiveFromServer;
-    private Scanner inFromStd = new Scanner(System.in);
+    private Scanner inFromStd;
     static final int DEFAULT_PORT_NUMBER = 7000;
+    static final String KEY = "i dont know yet";
 
     /**
      * This is a constructor for the ClackClient class
@@ -68,7 +69,13 @@ public class ClackClient {
         this("anonymous");
     }
 
-    public void start(){}
+    public void start(){
+        inFromStd = new Scanner(System.in);
+        while(!closeConnection){
+            this.readClientData();
+            this.printData();
+        }
+    }
 
     public void readClientData(){}
 
@@ -76,7 +83,11 @@ public class ClackClient {
 
     public void receiveData(){}
 
-    public void printData(){}
+    public void printData(){
+        System.out.println("This data is sent from " + dataToReceiveFromServer.getUserName() + ".");
+        System.out.println("This data was sent on " + dataToReceiveFromServer.getDate() + ".");
+        System.out.println("The data is:\n" + dataToReceiveFromServer.getData());
+    }
 
     /**
      * This functions returns the clients username

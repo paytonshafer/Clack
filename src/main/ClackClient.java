@@ -1,6 +1,9 @@
 package main;
 
 import data.ClackData;
+import java.io.*;
+import java.util.Scanner;
+import java.lang.IllegalArgumentException;
 
 /**
  * The ClackClient class represents the client user
@@ -13,6 +16,7 @@ public class ClackClient {
     private boolean closeConnection;
     private ClackData dataToSendToServer;
     private ClackData dataToReceiveFromServer;
+    private Scanner inFromStd = new Scanner(System.in);
     static final int DEFAULT_PORT_NUMBER = 7000;
 
     /**
@@ -21,13 +25,23 @@ public class ClackClient {
      * @param h This is the hostname the client is connected to
      * @param p This is the port number the client is connected to
      */
-    public ClackClient(String u, String h, int p){
+    public ClackClient(String u, String h, int p) throws IllegalArgumentException{
+        if(u == null){
+            throw new IllegalArgumentException("Your provided username is null");
+        }
+        if(h == null){
+            throw new IllegalArgumentException("Your provided hostname is null");
+        }
+        if(p < 1024){
+            throw new IllegalArgumentException("Your provided port number is less than 1024");
+        }
         this.userName = u;
         this.hostName = h;
         this.port = p;
         this.closeConnection = false;
         this.dataToSendToServer = null;
         this.dataToReceiveFromServer = null;
+
     }
 
     /**

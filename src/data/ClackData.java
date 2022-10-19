@@ -1,6 +1,7 @@
 package data;
 
 import java.util.Date;
+import java.lang.Math;
 
 /**
 * The ClackData class is an abstract class used to shape the FileClackData and MessageClackData.
@@ -79,7 +80,7 @@ public abstract class ClackData {
      */
     public abstract String getData();
 
-    protected String encrypt(String inputStringToEncrypt, String key){
+    public String encrypt(String inputStringToEncrypt, String key){
         char msg[] = inputStringToEncrypt.toCharArray();
         char keyArray[] = key.toCharArray();
         char keyString[] = new char[inputStringToEncrypt.length()];
@@ -109,7 +110,7 @@ public abstract class ClackData {
         return String.valueOf(encryptedString);
     }
 
-    protected String decrypt(String inputStringToDecrypt, String key){
+    public String decrypt(String inputStringToDecrypt, String key){
         char msg[] = inputStringToDecrypt.toCharArray();
         char keyArray[] = key.toCharArray();
         char keyString[] = new char[inputStringToDecrypt.length()];
@@ -129,9 +130,9 @@ public abstract class ClackData {
 
         for(int i = 0; i <= inputStringToDecrypt.length()-1; i++){
             if(65 <= msg[i] && msg[i] <= 90)//uppercase
-                decryptedString[i] = (char) ((((msg[i]-65)-(keyString[i]-65))%26)+65);
+                decryptedString[i] = (char) (((26+((msg[i]-65)-(keyString[i]-65)))%26)+65);
             else if(97 <= msg[i] && msg[i] <= 122)//lowercase
-                decryptedString[i] = (char) ((((msg[i]-97)-(keyString[i]-97))%26)+97);
+                decryptedString[i] = (char) (((26+((msg[i]-97)-(keyString[i]-97)))%26)+97);
             else
                 decryptedString[i] = msg[i];
         }

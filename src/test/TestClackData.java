@@ -33,12 +33,13 @@ public class TestClackData {
         System.out.println("John's message data is: " + messageData1);
         System.out.println("fileData's data is: " + fileData);
 
+        /* make encryption and decryption public to test
         System.out.println("The string 'Encrypt Me' encrypted with key 'test' is: ");
         String encrypted = messageData1.encrypt("Encrypt Me!!", "test");
         System.out.println(encrypted + "\n");
         System.out.println("When the above encryption is decrypted we get: ");
         System.out.println(messageData1.decrypt(encrypted,"test"));
-
+        */
 
     }
 }

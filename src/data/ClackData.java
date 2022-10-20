@@ -80,7 +80,7 @@ public abstract class ClackData {
      */
     public abstract String getData();
 
-    public String encrypt(String inputStringToEncrypt, String key){
+    private String encrypt(String inputStringToEncrypt, String key){
         char msg[] = inputStringToEncrypt.toCharArray();
         char keyArray[] = key.toCharArray();
         char keyString[] = new char[inputStringToEncrypt.length()];
@@ -110,7 +110,7 @@ public abstract class ClackData {
         return String.valueOf(encryptedString);
     }
 
-    public String decrypt(String inputStringToDecrypt, String key){
+    private String decrypt(String inputStringToDecrypt, String key){
         char msg[] = inputStringToDecrypt.toCharArray();
         char keyArray[] = key.toCharArray();
         char keyString[] = new char[inputStringToDecrypt.length()];

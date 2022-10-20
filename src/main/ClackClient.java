@@ -84,8 +84,8 @@ public class ClackClient {
     public void receiveData(){}
 
     public void printData(){
-        System.out.println("This data is sent from " + dataToReceiveFromServer.getUserName() + ".");
-        System.out.println("This data was sent on " + dataToReceiveFromServer.getDate() + ".");
+        System.out.println("The data is sent from " + dataToReceiveFromServer.getUserName() + ".");
+        System.out.println("The data is sent on " + dataToReceiveFromServer.getDate() + ".");
         System.out.println("The data is:\n" + dataToReceiveFromServer.getData());
     }
 

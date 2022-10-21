@@ -1,6 +1,9 @@
 package main;
 
 import data.ClackData;
+import data.FileClackData;
+import data.MessageClackData;
+
 import java.io.*;
 import java.util.Scanner;
 import java.lang.IllegalArgumentException;
@@ -77,7 +80,24 @@ public class ClackClient {
         }
     }
 
-    public void readClientData(){}
+    public void readClientData(){
+        String input = inFromStd.next();
+        if(input.equals("DONE")){
+            closeConnection = true;
+        } else if (input.equals("SENDFILE")) {
+            dataToSendToServer = new FileClackData(userName, inFromStd.next(), dataToSendToServer.CONSTANT_SENDFILE);
+            try{
+                dataToSendToServer.readFileContents();
+            }catch(FileNotFoundException fnfe){
+                System.err.println("This file cannot be found");
+                dataToSendToServer = null;
+            }
+        } else if (input.equals("LISTUSERS")) {
+            //nothing for now
+        } else {
+            dataToSendToServer = new MessageClackData(userName, input, dataToSendToServer.CONSTANT_SENDMESSAGE);
+        }
+    }
 
     public void sendData(){}
 

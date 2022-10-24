@@ -76,6 +76,7 @@ public class ClackClient {
         inFromStd = new Scanner(System.in);
         while(!closeConnection){
             this.readClientData();
+            dataToReceiveFromServer = dataToSendToServer;
             this.printData();
         }
     }
@@ -86,16 +87,12 @@ public class ClackClient {
             closeConnection = true;
         } else if (input.equals("SENDFILE")) {
             dataToSendToServer = new FileClackData(userName, inFromStd.next(), dataToSendToServer.CONSTANT_SENDFILE);
-            try{
-                dataToSendToServer.readFileContents();
-            }catch(FileNotFoundException fnfe){
-                System.err.println("This file cannot be found");
-                dataToSendToServer = null;
-            }
+                ((FileClackData)dataToSendToServer).readFileContents();
         } else if (input.equals("LISTUSERS")) {
             //nothing for now
         } else {
-            dataToSendToServer = new MessageClackData(userName, input, dataToSendToServer.CONSTANT_SENDMESSAGE);
+            String message = input + inFromStd.nextLine();
+            dataToSendToServer = new MessageClackData(userName, message, dataToSendToServer.CONSTANT_SENDMESSAGE);
         }
     }
 

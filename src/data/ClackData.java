@@ -79,6 +79,7 @@ public abstract class ClackData {
      * @return data
      */
     public abstract String getData();
+    public abstract String getData(String key);
 
     private String encrypt(String inputStringToEncrypt, String key){
         char msg[] = inputStringToEncrypt.toCharArray();

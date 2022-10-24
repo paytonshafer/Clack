@@ -22,6 +22,10 @@ public class MessageClackData extends ClackData {
         super(userName, type);
         this.message = message;
     }
+    public MessageClackData(String userName, String message, String key, int type) {
+        super(userName, type);
+        this.message = super.encrypt(message, key);
+    }
 
     /**
      * Default constructor.
@@ -40,6 +44,9 @@ public class MessageClackData extends ClackData {
      */
     public String getData () {
         return message;
+    }
+    public String getData (String key) {
+        return super.decrypt(message, key);
     }
 
     /**

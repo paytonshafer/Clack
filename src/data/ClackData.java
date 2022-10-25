@@ -1,6 +1,7 @@
 package data;
 
 import java.util.Date;
+import java.lang.Math;
 
 /**
 * The ClackData class is an abstract class used to shape the FileClackData and MessageClackData.
@@ -78,4 +79,65 @@ public abstract class ClackData {
      * @return data
      */
     public abstract String getData();
+    public abstract String getData(String key);
+
+    private String encrypt(String inputStringToEncrypt, String key){
+        char msg[] = inputStringToEncrypt.toCharArray();
+        char keyArray[] = key.toCharArray();
+        char keyString[] = new char[inputStringToEncrypt.length()];
+        char encryptedString[] = new char[inputStringToEncrypt.length()];
+
+        for(int i = 0, j = 0; i <= inputStringToEncrypt.length()-1; i++, j++){
+            if(j == key.length())
+                j = 0;
+
+            if(65 <= msg[i] && msg[i] <= 90)//uppercase
+                keyString[i] = Character.toUpperCase(keyArray[j]);
+            else if(97 <= msg[i] && msg[i] <= 122)//lowercase
+                keyString[i] = Character.toLowerCase(keyArray[j]);
+            else
+                keyString[i] = msg[i];
+        }
+
+        for(int i = 0; i <= inputStringToEncrypt.length()-1; i++){
+            if(65 <= msg[i] && msg[i] <= 90)//uppercase
+                encryptedString[i] = (char) ((((msg[i]-65)+(keyString[i]-65))%26)+65);
+            else if(97 <= msg[i] && msg[i] <= 122)//lowercase
+                encryptedString[i] = (char) ((((msg[i]-97)+(keyString[i]-97))%26)+97);
+            else
+                encryptedString[i] = msg[i];
+        }
+
+        return String.valueOf(encryptedString);
+    }
+
+    private String decrypt(String inputStringToDecrypt, String key){
+        char msg[] = inputStringToDecrypt.toCharArray();
+        char keyArray[] = key.toCharArray();
+        char keyString[] = new char[inputStringToDecrypt.length()];
+        char decryptedString[] = new char[inputStringToDecrypt.length()];
+
+        for(int i = 0, j = 0; i <= inputStringToDecrypt.length()-1; i++, j++){
+            if(j == key.length())
+                j = 0;
+
+            if(65 <= msg[i] && msg[i] <= 90)//uppercase
+                keyString[i] = Character.toUpperCase(keyArray[j]);
+            else if(97 <= msg[i] && msg[i] <= 122)//lowercase
+                keyString[i] = Character.toLowerCase(keyArray[j]);
+            else
+                keyString[i] = msg[i];
+        }
+
+        for(int i = 0; i <= inputStringToDecrypt.length()-1; i++){
+            if(65 <= msg[i] && msg[i] <= 90)//uppercase
+                decryptedString[i] = (char) (((26+((msg[i]-65)-(keyString[i]-65)))%26)+65);
+            else if(97 <= msg[i] && msg[i] <= 122)//lowercase
+                decryptedString[i] = (char) (((26+((msg[i]-97)-(keyString[i]-97)))%26)+97);
+            else
+                decryptedString[i] = msg[i];
+        }
+
+        return String.valueOf(decryptedString);
+    }
 }

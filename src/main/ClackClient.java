@@ -1,6 +1,12 @@
 package main;
 
 import data.ClackData;
+import data.FileClackData;
+import data.MessageClackData;
+
+import java.io.*;
+import java.util.Scanner;
+import java.lang.IllegalArgumentException;
 
 /**
  * The ClackClient class represents the client user
@@ -13,7 +19,9 @@ public class ClackClient {
     private boolean closeConnection;
     private ClackData dataToSendToServer;
     private ClackData dataToReceiveFromServer;
+    private Scanner inFromStd;
     static final int DEFAULT_PORT_NUMBER = 7000;
+    static final String KEY = "i dont know yet";
 
     /**
      * This is a constructor for the ClackClient class
@@ -21,13 +29,23 @@ public class ClackClient {
      * @param h This is the hostname the client is connected to
      * @param p This is the port number the client is connected to
      */
-    public ClackClient(String u, String h, int p){
+    public ClackClient(String u, String h, int p) throws IllegalArgumentException{
+        if(u == null){
+            throw new IllegalArgumentException("Your provided username is null");
+        }
+        if(h == null){
+            throw new IllegalArgumentException("Your provided hostname is null");
+        }
+        if(p < 1024){
+            throw new IllegalArgumentException("Your provided port number is less than 1024");
+        }
         this.userName = u;
         this.hostName = h;
         this.port = p;
         this.closeConnection = false;
         this.dataToSendToServer = null;
         this.dataToReceiveFromServer = null;
+
     }
 
     /**
@@ -54,15 +72,39 @@ public class ClackClient {
         this("anonymous");
     }
 
-    public void start(){}
+    public void start(){
+        inFromStd = new Scanner(System.in);
+        while(!closeConnection){
+            this.readClientData();
+            dataToReceiveFromServer = dataToSendToServer;
+            this.printData();
+        }
+    }
 
-    public void readClientData(){}
+    public void readClientData(){
+        String input = inFromStd.next();
+        if(input.equals("DONE")){
+            closeConnection = true;
+        } else if (input.equals("SENDFILE")) {
+            dataToSendToServer = new FileClackData(userName, inFromStd.next(), dataToSendToServer.CONSTANT_SENDFILE);
+                ((FileClackData)dataToSendToServer).readFileContents();
+        } else if (input.equals("LISTUSERS")) {
+            //nothing for now
+        } else {
+            String message = input + inFromStd.nextLine();
+            dataToSendToServer = new MessageClackData(userName, message, dataToSendToServer.CONSTANT_SENDMESSAGE);
+        }
+    }
 
     public void sendData(){}
 
     public void receiveData(){}
 
-    public void printData(){}
+    public void printData(){
+        System.out.println("The data is sent from " + dataToReceiveFromServer.getUserName() + ".");
+        System.out.println("The data is sent on " + dataToReceiveFromServer.getDate() + ".");
+        System.out.println("The data is:\n" + dataToReceiveFromServer.getData());
+    }
 
     /**
      * This functions returns the clients username

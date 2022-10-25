@@ -55,13 +55,46 @@ public class FileClackData extends ClackData {
     public String getData() {
         return fileContents;
     }
+    public String getData(String key) {
+        return super.decrypt(this.fileContents, key);
+    }
 
     /**
      * Function will take the file name and read the contents of
      * the file.
      */
-    public void readFileContents() {}
+    public void readFileContents() {
+        File file = new File(this.fileName);
+        String nextLine = null;
 
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+
+            while ((nextLine = bufferedReader.readLine()) != null) {
+                fileContents += nextLine;
+            }
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("File does not exist");
+        } catch (IOException ioe) {
+            System.err.println("IOException occurred");
+        }
+    }
+    public void readFileContents(String key) {
+        File file = new File(this.fileName);
+        String nextLine = null;
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+
+            while ((nextLine = super.encrypt(bufferedReader.readLine(), key)) != null) {
+                fileContents += nextLine;
+            }
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("File does not exist");
+        } catch (IOException ioe) {
+            System.err.println("IOException occurred");
+        }
+    }
     /**
      * Function will take the opened file, and print the contents of the file.
      */

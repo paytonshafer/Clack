@@ -4,8 +4,11 @@ import main.ClackClient;
 
 public class TestClackClient {
     public static void main(String args[]){
-        ClackClient client1 = new ClackClient("douglas", "thomas",22);
-        ClackClient client2 = new ClackClient("douglas", "thomas",22);
+        ///ClackClient client0 = new ClackClient("uname","hname", 160);
+        ///ClackClient client0 = new ClackClient("friend",null);
+        ///ClackClient client0 = new ClackClient(null);
+        ClackClient client1 = new ClackClient("douglas", "thomas",1025);
+        ClackClient client2 = new ClackClient("douglas", "thomas",1025);
         ClackClient client3 = new ClackClient("daisy", "moore");
         ClackClient client4 = new ClackClient("sam");
         ClackClient client5 = new ClackClient();

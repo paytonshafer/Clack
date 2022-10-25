@@ -68,7 +68,7 @@ public class FileClackData extends ClackData {
     public void writeFileContents() { System.out.println("");}
 
     /**
-     * Overloading the toString() function.
+     * Overriding the toString() function.
      *
      * The function returns a string displaying all variables of the FileClackData
      * object.
@@ -81,7 +81,7 @@ public class FileClackData extends ClackData {
     }
 
     /**
-     * Overloaded hashCode() function.
+     * Overriding hashCode() function.
      *
      * It returns a unique hash code for each unique object.
      * @return hash code

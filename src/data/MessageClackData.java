@@ -1,6 +1,5 @@
 package data;
 
-import sun.plugin2.message.Message;
 
 /**
  * The class MessageClackData holds all data regarding messages being

@@ -21,7 +21,7 @@ public class ClackClient {
     private ClackData dataToReceiveFromServer;
     private Scanner inFromStd;
     static final int DEFAULT_PORT_NUMBER = 7000;
-    static final String KEY = "i dont know yet";
+    static final String KEY = "xicvpowcndsiufycn";
 
     /**
      * This is a constructor for the ClackClient class
@@ -93,12 +93,12 @@ public class ClackClient {
             closeConnection = true;
         } else if (input.equals("SENDFILE")) {
             dataToSendToServer = new FileClackData(userName, inFromStd.next(), dataToSendToServer.CONSTANT_SENDFILE);
-                ((FileClackData)dataToSendToServer).readFileContents();
+                ((FileClackData)dataToSendToServer).readFileContents(KEY);
         } else if (input.equals("LISTUSERS")) {
             //nothing for now
         } else {
             String message = input + inFromStd.nextLine();
-            dataToSendToServer = new MessageClackData(userName, message, dataToSendToServer.CONSTANT_SENDMESSAGE);
+            dataToSendToServer = new MessageClackData(userName, message, KEY,dataToSendToServer.CONSTANT_SENDMESSAGE);
         }
     }
 
@@ -112,7 +112,7 @@ public class ClackClient {
     public void printData(){
         System.out.println("The data is sent from " + dataToReceiveFromServer.getUserName() + ".");
         System.out.println("The data is sent on " + dataToReceiveFromServer.getDate() + ".");
-        System.out.println("The data is:\n" + dataToReceiveFromServer.getData());
+        System.out.println("The data is:\n" + dataToReceiveFromServer.getData(KEY));
     }
 
     /**

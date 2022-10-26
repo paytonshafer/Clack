@@ -33,5 +33,7 @@ public class TestClackClient {
 
         System.out.println(client1);
 
+        client1.start();
+
     }
 }

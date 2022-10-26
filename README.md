@@ -355,6 +355,10 @@ We created a test package that includes three classes: TestClackClient, TestClac
 
 This is the output for testClackClient when sending a message, sending a file, and finally using the keyword DONE to terminate the session.
 
+
+
+Output:
+
 The username of client 1 is douglas
 
 The hostname of the server is thomas
@@ -391,7 +395,7 @@ Message
 
 The data is sent from douglas.
 
-The data is sent on Wed Oct 26 16:12:20 EDT 2022.
+The data is sent on Wed Oct 26 16:21:17 EDT 2022.
 
 The data is:
 
@@ -403,7 +407,7 @@ hello.txt
 
 The data is sent from douglas.
 
-The data is sent on Wed Oct 26 16:12:41 EDT 2022.
+The data is sent on Wed Oct 26 16:21:24 EDT 2022.
 
 The data is:
 
@@ -411,12 +415,5 @@ Hello!
 
 DONE
 
-The data is sent from douglas.
-
-The data is sent on Wed Oct 26 16:12:41 EDT 2022.
-
-The data is:
-
-Hello!
-
 Process finished with exit code 0
+

@@ -80,7 +80,7 @@ public class FileClackData extends ClackData {
             System.err.println("IOException occurred");
         }
     }
-    public void readFileContents(String key) {
+    public void readFileContents(String key) throws IOException {
         File file = new File(this.fileName);
         String nextLine = null;
 
@@ -99,7 +99,27 @@ public class FileClackData extends ClackData {
     /**
      * Function will take the opened file, and print the contents of the file.
      */
-    public void writeFileContents() { System.out.println("");}
+    public void writeFileContents() {
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(this.fileName));
+            out.write(fileContents);
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("File not found!");
+        } catch (IOException ioe) {
+            System.err.println("IOException");
+        }
+    }
+
+    public void writeFileContents(String key) {
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(this.fileName));
+            out.write(this.decrypt(this.fileContents, key));
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("File not found!");
+        } catch (IOException ioe) {
+            System.err.println("IOException");
+        }
+    }
 
     /**
      * Overriding the toString() function.

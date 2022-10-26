@@ -64,7 +64,7 @@ public class FileClackData extends ClackData {
      * Function will take the file name and read the contents of
      * the file.
      */
-    public void readFileContents() {
+    public void readFileContents() throws IOException{
         File file = new File(this.fileName);
         String nextLine = null;
 
@@ -97,7 +97,7 @@ public class FileClackData extends ClackData {
         }
     }
     /**
-     * Function will take the opened file, and print the contents of the file.
+     * Function opens file and writes the fileContent into the file.
      */
     public void writeFileContents() {
         try {
@@ -110,6 +110,10 @@ public class FileClackData extends ClackData {
         }
     }
 
+    /**
+     * Function opens file and writes the decrypted fileContent into the file.
+     * @param key
+     */
     public void writeFileContents(String key) {
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter(this.fileName));

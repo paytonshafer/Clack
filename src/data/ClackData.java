@@ -81,7 +81,13 @@ public abstract class ClackData {
     public abstract String getData();
     public abstract String getData(String key);
 
-    private String encrypt(String inputStringToEncrypt, String key){
+    /**
+     * This is a function that will encrypt a string using the Vigenère cipher
+     * @param inputStringToEncrypt the string to be encrypted
+     * @param key the key for the encryption
+     * @return the encrypted string
+     */
+    protected String encrypt(String inputStringToEncrypt, String key){
         char msg[] = inputStringToEncrypt.toCharArray();
         char keyArray[] = key.toCharArray();
         char keyString[] = new char[inputStringToEncrypt.length()];
@@ -111,7 +117,13 @@ public abstract class ClackData {
         return String.valueOf(encryptedString);
     }
 
-    private String decrypt(String inputStringToDecrypt, String key){
+    /**
+     * This is a function that will decrypt a string using the Vigenère cipher
+     * @param inputStringToDecrypt the string to be decrypted
+     * @param key the key for the decryption
+     * @return the decrypted string
+     */
+    protected String decrypt(String inputStringToDecrypt, String key){
         char msg[] = inputStringToDecrypt.toCharArray();
         char keyArray[] = key.toCharArray();
         char keyString[] = new char[inputStringToDecrypt.length()];

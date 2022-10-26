@@ -59,6 +59,7 @@ public class FileClackData extends ClackData {
     }
 
     /**
+     * Accessor function that returns decrypted fileContents
      *
      * @param key
      * @return
@@ -110,6 +111,7 @@ public class FileClackData extends ClackData {
             System.err.println("IOException occurred");
         }
     }
+
     /**
      * Function opens file and writes the fileContent into the file.
      */

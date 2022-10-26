@@ -1,4 +1,5 @@
 package data;
+import java.io.*;
 
 /**
  * The class FileClackData holds the data for files being transfered by users.

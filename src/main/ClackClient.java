@@ -72,6 +72,9 @@ public class ClackClient {
         this("anonymous");
     }
 
+    /**
+     * This function starts and runs the program
+     */
     public void start(){
         inFromStd = new Scanner(System.in);
         while(!closeConnection){
@@ -81,6 +84,9 @@ public class ClackClient {
         }
     }
 
+    /**
+     * This function does different things based on the input but will read the data
+     */
     public void readClientData(){
         String input = inFromStd.next();
         if(input.equals("DONE")){
@@ -100,6 +106,9 @@ public class ClackClient {
 
     public void receiveData(){}
 
+    /**
+     * This functions prints the data to the standard output
+     */
     public void printData(){
         System.out.println("The data is sent from " + dataToReceiveFromServer.getUserName() + ".");
         System.out.println("The data is sent on " + dataToReceiveFromServer.getDate() + ".");

@@ -75,8 +75,11 @@ public class ClackClient {
     /**
      * This function starts and runs the program
      */
-    public void start(){
+    public void start() throws IOException {
+
+        System.out.println("IM HERE!");
         inFromStd = new Scanner(System.in);
+        System.out.println("IM HERE!");
         while(!closeConnection){
             this.readClientData();
             dataToReceiveFromServer = dataToSendToServer;
@@ -87,7 +90,7 @@ public class ClackClient {
     /**
      * This function does different things based on the input but will read the data
      */
-    public void readClientData(){
+    public void readClientData() throws IOException {
         String input = inFromStd.next();
         if(input.equals("DONE")){
             closeConnection = true;

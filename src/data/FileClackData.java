@@ -66,10 +66,10 @@ public class FileClackData extends ClackData {
      * the file.
      */
     public void readFileContents() throws IOException{
-        File file = new File(this.fileName);
-        String nextLine = null;
 
         try {
+            File file = new File(this.fileName);
+            String nextLine = null;
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
             while ((nextLine = bufferedReader.readLine()) != null) {

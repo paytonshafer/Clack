@@ -53,6 +53,22 @@ public String getUserName()
 public Date getDate()
 
 /**
+     * This is a function that will encrypt a string using the Vigenère cipher
+     * @param inputStringToEncrypt the string to be encrypted
+     * @param key the key for the encryption
+     * @return the encrypted string
+     */
+    protected String encrypt(String inputStringToEncrypt, String key)
+    
+/**
+     * This is a function that will decrypt a string using the Vigenère cipher
+     * @param inputStringToDecrypt the string to be decrypted
+     * @param key the key for the decryption
+     * @return the decrypted string
+     */
+    protected String decrypt(String inputStringToDecrypt, String key)
+
+/**
 * Abstract class that returns the data a subclass is carrying.
 * @return data
 */
@@ -157,16 +173,38 @@ public String getFileName()
 public String getData()
 
 /**
+     * Accessor function that returns decrypted fileContents
+     *
+     * @param key
+     * @return
+     */
+    public String getData(String key)
+    
+/**
 * Function will take the file name and read the contents of
 * the file.
 */
 public void readFileContents()
 
 /**
+     * Function will take the file name and write the encrypted
+     * contents of the file into fileContents.
+     * @param key
+     * @throws IOException
+     */
+    public void readFileContents(String key) throws IOException
+
+/**
  * Function will take the opened file, and print the contents of the file.
  */
 public void writeFileContents()
 
+/**
+     * Function opens file and writes the decrypted fileContent into the file.
+     * @param key
+     */
+    public void writeFileContents(String key)
+    
 /**
 * Overloading the toString() function.
 *
@@ -311,3 +349,71 @@ public class ClackServer
 ## Testing
 
 We created a test package that includes three classes: TestClackClient, TestClackServer and TestClackData. Their only purpose is to test ClackClient class, ClackServer class and the data classes respectively.
+
+
+### Testing
+
+This is the output for testClackClient when sending a message, sending a file, and finally using the keyword DONE to terminate the session.
+
+
+
+Output:
+
+The username of client 1 is douglas
+
+The hostname of the server is thomas
+
+The port humber is 1025
+
+client 1 and client 2 are equal
+
+client 1 and client 3 are not equal
+
+The hash code of client 1 is -1816342652
+
+The hash code of client 2 is -1816342652
+
+The hash code of client 3 is 1138565120
+
+The client's username is douglas.
+
+The current host Name is thomas.
+
+The current port number is 1025.
+
+The current status of the connection being closed is false.
+
+The data sent to the server is:
+
+null
+
+The data received from the server is:
+
+null
+
+Message
+
+The data is sent from douglas.
+
+The data is sent on Wed Oct 26 16:21:17 EDT 2022.
+
+The data is:
+
+Message
+
+SENDFILE
+
+hello.txt
+
+The data is sent from douglas.
+
+The data is sent on Wed Oct 26 16:21:24 EDT 2022.
+
+The data is:
+
+Hello!
+
+DONE
+
+Process finished with exit code 0
+

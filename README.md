@@ -229,6 +229,21 @@ public ClackClient(String u)
 public ClackClient()
 
 /**
+* This function starts and runs the program
+*/
+public void start() throws IOException 
+
+/**
+* This function does different things based on the input but will read the data
+*/
+public void readClientData() throws IOException
+
+/**
+* This functions prints the data to the standard output
+*/
+public void printData(
+
+/**
 * This functions returns the clients username
 * @return This returns the clients username
 */

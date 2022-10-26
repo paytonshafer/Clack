@@ -5,8 +5,10 @@ import data.MessageClackData;
 
 public class TestClackData {
     public static void main(String args[]) {
+        String key = "thisisatestkey";
         MessageClackData messageData1 = new MessageClackData("JohnDoe", "Hey, I'm John Doe!", 2);
         MessageClackData messageData2 = new MessageClackData("JohnDoe", "Hey, I'm John Doe!", 2);
+        MessageClackData messageData3 = new MessageClackData("JohnDoe", "Hello",key,2);
         FileClackData fileData = new FileClackData("JohnDoe", "IMPORTANTFILE", 4 );
 
         MessageClackData nullMData = new MessageClackData();
@@ -40,6 +42,11 @@ public class TestClackData {
         System.out.println("When the above encryption is decrypted we get: ");
         System.out.println(messageData1.decrypt(encrypted,"test"));
         */
+
+        System.out.println("MessageData3 is:" + messageData3);
+        System.out.println(messageData2.getData());
+        System.out.println(messageData3.getData(key));
+
 
     }
 }

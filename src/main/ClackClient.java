@@ -80,6 +80,7 @@ public class ClackClient {
         while(!closeConnection){
             this.readClientData();
             dataToReceiveFromServer = dataToSendToServer;
+            if (closeConnection) break;
             this.printData();
         }
     }

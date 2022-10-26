@@ -311,3 +311,43 @@ public class ClackServer
 ## Testing
 
 We created a test package that includes three classes: TestClackClient, TestClackServer and TestClackData. Their only purpose is to test ClackClient class, ClackServer class and the data classes respectively.
+
+
+### Testing
+
+This is the output for testClackClient when sending a message, sending a file, and finally using the keyword DONE to terminate the session.
+
+The username of client 1 is douglas
+The hostname of the server is thomas
+The port humber is 1025
+client 1 and client 2 are equal
+client 1 and client 3 are not equal
+The hash code of client 1 is -1816342652
+The hash code of client 2 is -1816342652
+The hash code of client 3 is 1138565120
+The client's username is douglas.
+The current host Name is thomas.
+The current port number is 1025.
+The current status of the connection being closed is false.
+The data sent to the server is:
+null
+The data received from the server is:
+null
+Message
+The data is sent from douglas.
+The data is sent on Wed Oct 26 16:12:20 EDT 2022.
+The data is:
+Message
+SENDFILE
+hello.txt
+The data is sent from douglas.
+The data is sent on Wed Oct 26 16:12:41 EDT 2022.
+The data is:
+Hello!
+DONE
+The data is sent from douglas.
+The data is sent on Wed Oct 26 16:12:41 EDT 2022.
+The data is:
+Hello!
+
+Process finished with exit code 0

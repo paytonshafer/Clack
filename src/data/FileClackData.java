@@ -57,13 +57,19 @@ public class FileClackData extends ClackData {
     public String getData() {
         return fileContents;
     }
+
+    /**
+     *
+     * @param key
+     * @return
+     */
     public String getData(String key) {
         return super.decrypt(this.fileContents, key);
     }
 
     /**
-     * Function will take the file name and read the contents of
-     * the file.
+     * Function will take the file name and write the contents of
+     * the file into fileContents.
      */
     public void readFileContents() throws IOException{
 
@@ -81,6 +87,13 @@ public class FileClackData extends ClackData {
             System.err.println("IOException occurred");
         }
     }
+
+    /**
+     * Function will take the file name and write the encrypted
+     * contents of the file into fileContents.
+     * @param key
+     * @throws IOException
+     */
     public void readFileContents(String key) throws IOException {
         File file = new File(this.fileName);
         String nextLine = null;
@@ -88,8 +101,8 @@ public class FileClackData extends ClackData {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
-            while ((nextLine = super.encrypt(bufferedReader.readLine(), key)) != null) {
-                fileContents += nextLine;
+            while ((nextLine = bufferedReader.readLine()) != null) {
+                fileContents += super.encrypt(nextLine, key);
             }
         } catch (FileNotFoundException fnfe) {
             System.err.println("File does not exist");

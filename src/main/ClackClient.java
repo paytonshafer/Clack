@@ -76,10 +76,7 @@ public class ClackClient {
      * This function starts and runs the program
      */
     public void start() throws IOException {
-
-        System.out.println("IM HERE!");
         inFromStd = new Scanner(System.in);
-        System.out.println("IM HERE!");
         while(!closeConnection){
             this.readClientData();
             dataToReceiveFromServer = dataToSendToServer;
@@ -95,13 +92,13 @@ public class ClackClient {
         if(input.equals("DONE")){
             closeConnection = true;
         } else if (input.equals("SENDFILE")) {
-            dataToSendToServer = new FileClackData(userName, inFromStd.next(), dataToSendToServer.CONSTANT_SENDFILE);
+            dataToSendToServer = new FileClackData(userName, inFromStd.next(), 3);
                 ((FileClackData)dataToSendToServer).readFileContents(KEY);
         } else if (input.equals("LISTUSERS")) {
             //nothing for now
         } else {
             String message = input + inFromStd.nextLine();
-            dataToSendToServer = new MessageClackData(userName, message, KEY,dataToSendToServer.CONSTANT_SENDMESSAGE);
+            dataToSendToServer = new MessageClackData(userName, message, KEY, 2);
         }
     }
 

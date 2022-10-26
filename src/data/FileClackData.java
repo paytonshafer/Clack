@@ -65,7 +65,7 @@ public class FileClackData extends ClackData {
      * Function will take the file name and read the contents of
      * the file.
      */
-    public void readFileContents() {
+    public void readFileContents() throws IOException{
         File file = new File(this.fileName);
         String nextLine = null;
 
@@ -81,7 +81,7 @@ public class FileClackData extends ClackData {
             System.err.println("IOException occurred");
         }
     }
-    public void readFileContents(String key) {
+    public void readFileContents(String key) throws IOException {
         File file = new File(this.fileName);
         String nextLine = null;
 
@@ -98,12 +98,36 @@ public class FileClackData extends ClackData {
         }
     }
     /**
-     * Function will take the opened file, and print the contents of the file.
+     * Function opens file and writes the fileContent into the file.
      */
-    public void writeFileContents() { System.out.println("");}
+    public void writeFileContents() {
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(this.fileName));
+            out.write(fileContents);
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("File not found!");
+        } catch (IOException ioe) {
+            System.err.println("IOException");
+        }
+    }
 
     /**
-     * Overloading the toString() function.
+     * Function opens file and writes the decrypted fileContent into the file.
+     * @param key
+     */
+    public void writeFileContents(String key) {
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(this.fileName));
+            out.write(this.decrypt(this.fileContents, key));
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("File not found!");
+        } catch (IOException ioe) {
+            System.err.println("IOException");
+        }
+    }
+
+    /**
+     * Overriding the toString() function.
      *
      * The function returns a string displaying all variables of the FileClackData
      * object.
@@ -116,7 +140,7 @@ public class FileClackData extends ClackData {
     }
 
     /**
-     * Overloaded hashCode() function.
+     * Overriding hashCode() function.
      *
      * It returns a unique hash code for each unique object.
      * @return hash code

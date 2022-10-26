@@ -18,18 +18,18 @@ public class TestClackData {
         System.out.println("The Type of the file data: " + fileData.getType());
         System.out.println("The Filename of the nullFData: " + fileData.getFileName());
         System.out.println("The date of the John's message data: " + messageData1.getDate());
-        System.out.println("+\n+\n");
+        System.out.println("+\n+\n+");
         System.out.println("messageData1 equals messageData2: " + messageData1.equals(messageData2));
         System.out.println("fileData equals nullFdata: " + fileData.equals(nullFData));
-        System.out.println("+\n+\n");
+        System.out.println("+\n+\n+");
         System.out.println("The data from John's message is: " + messageData1.getData());
         System.out.println("The data from fileData is: " + fileData.getData());
-        System.out.println("+\n+\n");
+        System.out.println("+\n+\n+");
         System.out.println("messageData1's hashcode is: " + messageData1.hashCode());
         System.out.println("messageData2's hashcode is: " + messageData1.hashCode());
         System.out.println("fileData's hashcode is: " + fileData.hashCode());
         System.out.println("nullFData's hashcode is: " + nullFData.hashCode());
-        System.out.println("+\n+\n");
+        System.out.println("+\n+\n+");
         System.out.println("John's message data is: " + messageData1);
         System.out.println("fileData's data is: " + fileData);
 

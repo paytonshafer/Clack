@@ -22,6 +22,16 @@ public class MessageClackData extends ClackData {
         super(userName, type);
         this.message = message;
     }
+
+    /**
+     * Main constructor for the class, with encryption key.
+     *
+     * Calls the super constructor for variables username and type.
+     * @param userName
+     * @param message <-- gets encrypted using the key variable
+     * @param key
+     * @param type
+     */
     public MessageClackData(String userName, String message, String key, int type) {
         super(userName, type);
         this.message = super.encrypt(message, key);
@@ -45,6 +55,13 @@ public class MessageClackData extends ClackData {
     public String getData () {
         return message;
     }
+
+    /**
+     * Decrypts then returns the data of the class.
+     *
+     * @param key
+     * @return message
+     */
     public String getData (String key) {
         return super.decrypt(message, key);
     }

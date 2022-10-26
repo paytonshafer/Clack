@@ -3,13 +3,15 @@ package test;
 import data.FileClackData;
 import data.MessageClackData;
 
+import java.io.IOException;
+
 public class TestClackData {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         String key = "thisisatestkey";
         MessageClackData messageData1 = new MessageClackData("JohnDoe", "Hey, I'm John Doe!", 2);
         MessageClackData messageData2 = new MessageClackData("JohnDoe", "Hey, I'm John Doe!", 2);
         MessageClackData messageData3 = new MessageClackData("JohnDoe", "Hello",key,2);
-        FileClackData fileData = new FileClackData("JohnDoe", "IMPORTANTFILE", 4 );
+        FileClackData fileData = new FileClackData("JohnDoe", "hello.txt", 4 );
 
         MessageClackData nullMData = new MessageClackData();
         FileClackData nullFData = new FileClackData();
@@ -46,7 +48,8 @@ public class TestClackData {
         System.out.println("MessageData3 is:" + messageData3);
         System.out.println(messageData2.getData());
         System.out.println(messageData3.getData(key));
-
+        fileData.readFileContents();
+        fileData.writeFileContents();
 
     }
 }

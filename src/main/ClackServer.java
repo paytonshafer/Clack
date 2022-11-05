@@ -1,6 +1,11 @@
 package main;
 
 import data.ClackData;
+import data.MessageClackData;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.*;
 
 /**
  * The ClackServer class represents the server that clients connect to
@@ -11,6 +16,8 @@ public class ClackServer {
     private boolean closeConnection;
     private ClackData dataToSendToClient;
     private ClackData dataToReceiveFromClient;
+    private ObjectInputStream inFromClient;
+    private ObjectOutputStream outToClient;
     static final int DEFAULT_PORT_NUMBER = 7000;
 
     /**
@@ -22,6 +29,8 @@ public class ClackServer {
         this.closeConnection = false;
         this.dataToSendToClient = null;
         this.dataToReceiveFromClient = null;
+        this.inFromClient = null;
+        this.outToClient = null;
     }
 
     /**
@@ -31,11 +40,36 @@ public class ClackServer {
         this(DEFAULT_PORT_NUMBER);
     }
 
-    public void start(){}
+    /**
+     * This function starts and runs the server
+     */
+    public void start() throws Exception{
+        try {
+            ServerSocket sskt = new ServerSocket(port);
+            Socket clientSkt = sskt.accept();
+            inFromClient = new ObjectInputStream(clientSkt.getInputStream());
+            outToClient = new ObjectOutputStream(clientSkt.getOutputStream());
+
+            while(!closeConnection){
+                dataToReceiveFromClient = (ClackData)inFromClient.readObject();
+                receiveData(dataToReceiveFromClient);
+                dataToSendToClient = dataToReceiveFromClient;
+                sendData();
+            }
+
+            sskt.close();
+            clientSkt.close();
+            inFromClient.close();
+            outToClient.close();
+
+        }catch(Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     public void receiveData(ClackData dataFromClient){}
 
-    public void sentData(){}
+    public void sendData(){}
 
     /**
      * This functions returns the port number

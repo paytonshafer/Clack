@@ -2,9 +2,8 @@ package main;
 
 import data.ClackData;
 import data.MessageClackData;
-
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import data.FileClackData;
+import java.io.*;
 import java.net.*;
 
 /**
@@ -24,7 +23,10 @@ public class ClackServer {
      * This is a constructor for the ClackServer class
      * @param p This is the port number a client connects to
      */
-    public ClackServer(int p){
+    public ClackServer(int p) throws IllegalArgumentException{
+        if(p < 1024){
+            throw new IllegalArgumentException("Your provided port number is less than 1024");
+        }
         this.port = p;
         this.closeConnection = false;
         this.dataToSendToClient = null;
@@ -42,34 +44,82 @@ public class ClackServer {
 
     /**
      * This function starts and runs the server
+     * @throws IOException
+     * @throws SecurityException
+     * @throws IllegalArgumentException
+     * @throws ClassNotFoundException
+     * @throws NullPointerException
      */
-    public void start() throws Exception{
+    public void start() throws IOException, SecurityException, IllegalArgumentException,
+                               ClassNotFoundException, NullPointerException{
         try {
-            ServerSocket sskt = new ServerSocket(port);
-            Socket clientSkt = sskt.accept();
+            ServerSocket skt = new ServerSocket(port);
+            Socket clientSkt = skt.accept();
             inFromClient = new ObjectInputStream(clientSkt.getInputStream());
             outToClient = new ObjectOutputStream(clientSkt.getOutputStream());
 
             while(!closeConnection){
-                dataToReceiveFromClient = (ClackData)inFromClient.readObject();
-                receiveData(dataToReceiveFromClient);
+                receiveData();
                 dataToSendToClient = dataToReceiveFromClient;
                 sendData();
             }
 
-            sskt.close();
+            skt.close();
             clientSkt.close();
             inFromClient.close();
             outToClient.close();
 
-        }catch(Exception e) {
-            System.err.println(e.getMessage());
+        }catch(IOException IOE) {
+            System.err.println("IO Exception");
+        }catch (SecurityException SE){
+            System.err.println("Security Exception");
+        }catch(IllegalArgumentException IAE){
+            System.err.println("Illegal Argument for Port Number");
+        }catch(ClassNotFoundException CNF){
+            System.err.println("Class Not Found Exception");
+        }catch(NullPointerException NPE){
+            System.err.println("Null Pointer Exception");
         }
     }
 
-    public void receiveData(ClackData dataFromClient){}
+    /**
+     * This function receives data from inFromClient
+     * @throws IOException
+     * @throws InvalidClassException
+     * @throws ClassNotFoundException
+     * @throws StreamCorruptedException
+     * @throws OptionalDataException
+     */
+    public void receiveData() throws IOException, InvalidClassException, ClassNotFoundException,
+                                     StreamCorruptedException, OptionalDataException{
+        try{
+            dataToReceiveFromClient = (ClackData) inFromClient.readObject();
+        }catch(InvalidClassException ICE){
+            System.err.println("Invalid Class Exception");
+        }catch(ClassNotFoundException CNF){
+            System.err.println("Class Not Found Exception");
+        }catch(IOException IOE) {
+            System.err.println("IO Exception");
+        }
+    }
 
-    public void sendData(){}
+    /**
+     * This function sends data to the client with outToClient
+     * @throws InvalidClassException
+     * @throws NotSerializableException
+     * @throws IOException
+     */
+    public void sendData() throws InvalidClassException, NotSerializableException, IOException {
+        try{
+            outToClient.writeObject(dataToSendToClient);
+        }catch(InvalidClassException ICE){
+            System.err.println("Invalid Class Exception");
+        }catch(NotSerializableException NSE){
+            System.err.println("Not Serializable Exception");
+        }catch(IOException IOE){
+            System.err.println("IO Exception");
+        }
+    }
 
     /**
      * This functions returns the port number

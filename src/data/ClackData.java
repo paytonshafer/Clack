@@ -1,12 +1,13 @@
 package data;
 
+import java.io.*;
 import java.util.Date;
 import java.lang.Math;
 
 /**
 * The ClackData class is an abstract class used to shape the FileClackData and MessageClackData.
 * */
-public abstract class ClackData {
+public abstract class ClackData implements Serializable {
     public final int CONSTANT_LISTUSERS = 0;
     public final int CONSTANT_LOGOUT = 1;
     public final int CONSTANT_SENDMESSAGE = 2;

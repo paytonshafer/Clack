@@ -44,11 +44,6 @@ public class ClackServer {
 
     /**
      * This function starts and runs the server
-     * @throws IOException
-     * @throws SecurityException
-     * @throws IllegalArgumentException
-     * @throws ClassNotFoundException
-     * @throws NullPointerException
      */
     public void start() {
         try {

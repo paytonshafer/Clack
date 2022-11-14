@@ -50,8 +50,7 @@ public class ClackServer {
      * @throws ClassNotFoundException
      * @throws NullPointerException
      */
-    public void start() throws IOException, SecurityException, IllegalArgumentException,
-                               ClassNotFoundException, NullPointerException{
+    public void start() {
         try {
             ServerSocket skt = new ServerSocket(port);
             Socket clientSkt = skt.accept();
@@ -94,6 +93,11 @@ public class ClackServer {
                                      StreamCorruptedException, OptionalDataException{
         try{
             dataToReceiveFromClient = (ClackData) inFromClient.readObject();
+
+            if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT) {
+                closeConnection = true;
+            }
+
         }catch(InvalidClassException ICE){
             System.err.println("Invalid Class Exception");
         }catch(ClassNotFoundException CNF){
@@ -152,5 +156,28 @@ public class ClackServer {
                 ". The current status of the connection being closed is " + this.closeConnection +
                  ". The data sent to the client is:\n" + this.dataToSendToClient +
                   "\nThe data received from the client is:\n" + this.dataToReceiveFromClient + ".";
+    }
+
+    /**
+     * This is a main method for ClackServer.
+     *
+     * If ClackServer is called with no arguments it creates a
+     * connection with the default port number
+     *
+     * If ClackServer is called with an argument, it will take
+     * the information from the argument and put the information
+     * into the constructor of the server. The argument syntax is
+     * as follows: <PORT>
+     *
+     * @param args
+     */
+    public static void main(String[] args)  {
+        if(args.length == 0) {
+            ClackServer defaultServer = new ClackServer();
+            defaultServer.start();
+        }else{
+            ClackServer server = new ClackServer(Integer.parseInt(args[0]));
+            server.start();
+        }
     }
 }

@@ -124,14 +124,15 @@ public class ClackClient {
         String input = inFromStd.next();
         if(input.equals("DONE")){
             closeConnection = true;
+            dataToSendToServer = new MessageClackData(userName, input, KEY, ClackData.CONSTANT_LOGOUT);
         } else if (input.equals("SENDFILE")) {
-            dataToSendToServer = new FileClackData(userName, inFromStd.next(), 3);
+            dataToSendToServer = new FileClackData(userName, inFromStd.next(), ClackData.CONSTANT_SENDFILE);
                 ((FileClackData)dataToSendToServer).readFileContents(KEY);
         } else if (input.equals("LISTUSERS")) {
             //nothing for now
         } else {
             String message = input + inFromStd.nextLine();
-            dataToSendToServer = new MessageClackData(userName, message, KEY, 2);
+            dataToSendToServer = new MessageClackData(userName, message, KEY, ClackData.CONSTANT_SENDMESSAGE);
         }
     }
 

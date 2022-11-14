@@ -5,6 +5,7 @@ import data.FileClackData;
 import data.MessageClackData;
 
 import java.io.*;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Scanner;
 import java.lang.IllegalArgumentException;
@@ -78,7 +79,7 @@ public class ClackClient {
     }
 
     /**
-     * This function starts and runs the program
+     * This function starts the connection between the client and server
      */
     public void start() throws IOException {
         try {
@@ -103,8 +104,10 @@ public class ClackClient {
             outToServer.close();
             skt.close();
 
+        }catch (ConnectException CE) {
+            System.err.println("Connection Refused");
         }catch(IOException IOE) {
-            System.err.println("IO Exception");
+            System.err.println("IO Exception: "+ IOE);
         }catch (SecurityException SE){
             System.err.println("Security Exception");
         }catch(IllegalArgumentException IAE){

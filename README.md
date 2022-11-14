@@ -5,7 +5,7 @@ In your test classes, what happens if you provide a negative value for a port nu
 A negative value as the port number just makes it so the value of the port is negative. When there is a null value for the user it messes with the hashcode because there is no hashcode for a null value. We could put in a test to make sure the inputs are the correct form.
 
 data:
-ClackData:
+## ClackData:
 /**
 * The ClackData class is an abstract class used to shape the FileClackData and MessageClackData.
 * */
@@ -132,7 +132,7 @@ public int hashCode()
 */
 public boolean equals(Object other)
 
-FileClackData:
+## FileClackData:
 /**
  * The class FileClackData holds the data for files being transfered by users.
  */
@@ -233,7 +233,23 @@ public int hashCode()
 public boolean equals(Object other)
 
 main:
-ClackClient:
+## ClackClient:
+
+/**
+* This is a main method for ClackClient.
+*
+* If ClackClient is called with no arguments it creates an
+* anonymous connection to the localhost.
+*
+* If ClackClient is called with an argument, it will take
+* the information from the argument and put the information
+* into the constructor of the client. The argument syntax is
+* as follows: <USER@HOSTNAME:PORT>
+*
+* @param args
+*/
+public static void main(String[] args)
+
 /**
  * The ClackClient class represents the client user
  * The class holds the data of the client
@@ -265,6 +281,31 @@ public ClackClient(String u)
 * This is the default constructor
 */
 public ClackClient()
+
+/**
+* This function starts the connection between the client and server
+*/
+public void start() throws IOException
+
+/**
+* This function does different things based on the input but will read the data
+*/
+public void readClientData()
+
+/**
+* Sends out client data to server
+*/
+public void sendData()
+
+/**
+* Receives object data from the server
+*/
+public void receiveData()
+
+/**
+* This functions prints the data to the standard output
+*/
+public void printData()
 
 /**
 * This functions returns the clients username

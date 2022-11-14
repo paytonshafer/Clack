@@ -198,7 +198,7 @@ public class ClackClient {
      * @param obj This represents the other object the client is being compared to
      * @return This returns true or false for whether the clients are equal
      */
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         ClackClient other = (ClackClient) obj;
         return this.hostName.equals(other.hostName) && this.userName.equals(other.userName) &&
                 this.port == other.port;
@@ -216,8 +216,57 @@ public class ClackClient {
                    "\nThe data received from the server is:\n" + this.dataToReceiveFromServer;
     }
 
+    /**
+     * This is a main method for ClackClient.
+     *
+     * If ClackClient is called with no arguments it creates an
+     * anonymous connection to the localhost.
+     *
+     * If ClackClient is called with an argument, it will take
+     * the information from the argument and put the information
+     * into the constructor of the client. The argument syntax is
+     * as follows: <USER@HOSTNAME:PORT>
+     *
+     * @param args
+     */
+    public static void main(String[] args){
+        try {
 
-    public void main(String args[]){
+            String u = null;
+            String h = "localhost";
+            int p = DEFAULT_PORT_NUMBER;
 
+            if (args.length == 0) {
+                ClackClient client = new ClackClient();
+                client.start();
+
+            } else if (args.length == 1) {
+
+                Scanner scanArg = new Scanner(args[0]);
+                scanArg.useDelimiter("@|:");
+
+                if (scanArg.hasNext()) {
+                    u = scanArg.next();
+
+                    if (scanArg.hasNext()) {
+                        h = scanArg.next();
+
+                        if (scanArg.hasNext()) {
+                           p = scanArg.nextInt();
+                        }
+                    }
+                }
+
+                ClackClient client = new ClackClient(u, h, p);
+                client.start();
+
+            }
+        }catch (IOException ioe) {
+            System.err.println("IO Exception");
+        } catch (IllegalArgumentException iae) {
+            System.err.println("Illegal Argument");
+        } catch (NullPointerException npe) {
+            System.err.println("Null Pointer Exception");
+        }
     }
 }

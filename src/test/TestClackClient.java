@@ -5,7 +5,7 @@ import main.ClackClient;
 import java.io.IOException;
 
 public class TestClackClient {
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         ///ClackClient client0 = new ClackClient("uname","hname", 160);
         ///ClackClient client0 = new ClackClient("friend",null);
         ///ClackClient client0 = new ClackClient(null);

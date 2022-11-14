@@ -5,6 +5,7 @@ import data.FileClackData;
 import data.MessageClackData;
 
 import java.io.*;
+import java.net.Socket;
 import java.util.Scanner;
 import java.lang.IllegalArgumentException;
 
@@ -13,6 +14,8 @@ import java.lang.IllegalArgumentException;
  * The class holds the data of the client
  */
 public class ClackClient {
+    private ObjectInputStream inFromServer;
+    private ObjectOutputStream outToServer;
     private String userName;
     private String hostName;
     private int port;
@@ -45,6 +48,8 @@ public class ClackClient {
         this.closeConnection = false;
         this.dataToSendToServer = null;
         this.dataToReceiveFromServer = null;
+        this.inFromServer = null;
+        this.outToServer = null;
 
     }
 
@@ -76,12 +81,36 @@ public class ClackClient {
      * This function starts and runs the program
      */
     public void start() throws IOException {
-        inFromStd = new Scanner(System.in);
-        while(!closeConnection){
-            this.readClientData();
-            dataToReceiveFromServer = dataToSendToServer;
-            if (closeConnection) break;
-            this.printData();
+        try {
+
+            Socket skt = new Socket(hostName, port);
+            outToServer = new ObjectOutputStream(skt.getOutputStream());
+            inFromServer = new ObjectInputStream(skt.getInputStream());
+            inFromStd = new Scanner(inFromServer);
+
+            while (!closeConnection) {
+
+                this.readClientData();
+                this.sendData();
+                this.receiveData();
+                if (closeConnection) break;
+                this.printData();
+
+            }
+
+            inFromStd.close();
+            inFromServer.close();
+            outToServer.close();
+            skt.close();
+
+        }catch(IOException IOE) {
+            System.err.println("IO Exception");
+        }catch (SecurityException SE){
+            System.err.println("Security Exception");
+        }catch(IllegalArgumentException IAE){
+            System.err.println("Illegal Argument for Port Number");
+        }catch(NullPointerException NPE){
+            System.err.println("Null Pointer Exception");
         }
     }
 
@@ -103,9 +132,33 @@ public class ClackClient {
         }
     }
 
-    public void sendData(){}
+    /**
+     * Sends out client data to server
+     */
+    public void sendData(){
+        try {
+            outToServer.writeObject(dataToSendToServer);
+        } catch (IOException e) {
+            System.err.println("IO Exception");
+        } catch (NullPointerException e) {
+            System.err.println("Null Pointer Exception");
+        }
+    }
 
-    public void receiveData(){}
+    /**
+     * Receives object data from the server
+     */
+    public void receiveData(){
+        try {
+            dataToReceiveFromServer = (ClackData) inFromServer.readObject();
+        } catch (IOException e) {
+            System.err.println("IO Exception");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Class Not Found");
+        } catch (NullPointerException e) {
+            System.err.println("Null Pointer Exception");
+        }
+    }
 
     /**
      * This functions prints the data to the standard output
@@ -161,5 +214,10 @@ public class ClackClient {
                  ".\nThe current status of the connection being closed is " + this.closeConnection +
                   ".\nThe data sent to the server is:\n" + this.dataToSendToServer +
                    "\nThe data received from the server is:\n" + this.dataToReceiveFromServer;
+    }
+
+
+    public void main(String args[]){
+
     }
 }

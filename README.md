@@ -396,7 +396,7 @@ We created a test package that includes three classes: TestClackClient, TestClac
 
 This is the output for testClackClient when sending a message, sending a file, and finally using the keyword DONE to terminate the session.
 
-
+To see output best look at file in raw form
 Testing ClackCLient and ClackServer with various parameters and on different computers
 Output:
 

@@ -451,3 +451,16 @@ paytonshafer@MacBook-Pro-4 src % java main/ClackServer
 Socket Established
 paytonshafer@MacBook-Pro-4 src % 
 
+Payton's PC as client and server
+paytonshafer@MacBook-Pro-4 src % java main/ClackClient User          
+Socket Established
+Hello
+The data is sent on Tue Nov 15 13:03:34 EST 2022.
+The data is:
+Hello
+Goodbye
+The data is sent on Tue Nov 15 13:03:39 EST 2022.
+The data is:
+Goodbye
+DONE
+paytonshafer@MacBook-Pro-4 src % 

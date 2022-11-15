@@ -24,7 +24,7 @@ public class ClackClient {
     private ClackData dataToSendToServer;
     private ClackData dataToReceiveFromServer;
     private Scanner inFromStd;
-    static final int DEFAULT_PORT_NUMBER = 7000;
+    static final int DEFAULT_PORT_NUMBER = 1200;
     static final String KEY = "xicvpowcndsiufycn";
 
     /**

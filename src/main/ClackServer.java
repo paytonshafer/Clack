@@ -17,7 +17,7 @@ public class ClackServer {
     private ClackData dataToReceiveFromClient;
     private ObjectInputStream inFromClient;
     private ObjectOutputStream outToClient;
-    static final int DEFAULT_PORT_NUMBER = 7000;
+    static final int DEFAULT_PORT_NUMBER = 1200;
 
     /**
      * This is a constructor for the ClackServer class

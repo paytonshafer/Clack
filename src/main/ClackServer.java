@@ -49,6 +49,7 @@ public class ClackServer {
         try {
             ServerSocket skt = new ServerSocket(port);
             Socket clientSkt = skt.accept();
+            System.out.println("Socket Established");
             inFromClient = new ObjectInputStream(clientSkt.getInputStream());
             outToClient = new ObjectOutputStream(clientSkt.getOutputStream());
 

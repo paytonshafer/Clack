@@ -399,3 +399,19 @@ This is the output for testClackClient when sending a message, sending a file, a
 
 Testing ClackCLient and ClackServer with various parameters and on different computers
 Output:
+
+$ main.ClackClient user@128.153.172.227
+Socket
+Socket Established
+Hello world!
+The data is sent on Tue Nov 15 12:45:17 EST 2022.
+The data is:
+Hello world!
+SENDFILE
+hello.txt
+The data is sent on Tue Nov 15 12:46:11 EST 2022.
+The data is:
+Hello!
+DONE
+
+Process finished with exit code 0

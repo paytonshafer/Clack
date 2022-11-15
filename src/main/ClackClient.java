@@ -100,7 +100,6 @@ public class ClackClient {
 
             }
 
-            System.out.println("Outside while loop");
 
             inFromStd.close();
             inFromServer.close();
@@ -124,9 +123,7 @@ public class ClackClient {
      * This function does different things based on the input but will read the data
      */
     public void readClientData() throws IOException {
-        System.out.println("IN READ CLIENT DATA");
         String input = inFromStd.next();
-        System.out.println(input);
         if(input.equals("DONE")){
             closeConnection = true;
             dataToSendToServer = new MessageClackData(userName, input, KEY, ClackData.CONSTANT_LOGOUT);
@@ -146,7 +143,6 @@ public class ClackClient {
      */
     public void sendData(){
         try {
-            System.out.println("IN SEND DATA");
             outToServer.writeObject(dataToSendToServer);
         } catch (IOException e) {
             System.err.println("IO Exception");
@@ -160,7 +156,6 @@ public class ClackClient {
      */
     public void receiveData(){
         try {
-            System.out.println("IN RECEIVE DATA");
             dataToReceiveFromServer = (ClackData) inFromServer.readObject();
         } catch (IOException e) {
             System.err.println("IO Exception");
@@ -175,7 +170,6 @@ public class ClackClient {
      * This functions prints the data to the standard output
      */
     public void printData(){
-        System.out.println("IN PRINT DATA"); System.out.println("The data is sent from " + dataToReceiveFromServer.getUserName() + ".");
         System.out.println("The data is sent on " + dataToReceiveFromServer.getDate() + ".");
         System.out.println("The data is:\n" + dataToReceiveFromServer.getData(KEY));
     }

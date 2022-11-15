@@ -400,7 +400,7 @@ This is the output for testClackClient when sending a message, sending a file, a
 Testing ClackCLient and ClackServer with various parameters and on different computers
 Output:
 
-From Ryan's PC as Client Payton's as Server
+From Ryan's PC as Client, Payton's as Server
 $ main.ClackClient user@128.153.172.227
 Socket
 Socket Established
@@ -417,6 +417,7 @@ DONE
 
 Process finished with exit code 0
 
+From Payton's PC as Cient, Ryann's as Server
 paytonshafer@MacBook-Pro-4 src % java main/ClackClient User@128.153.167.162:1400
 Socket Established
 Hello
@@ -435,4 +436,18 @@ The data is sent on Tue Nov 15 12:52:53 EST 2022.
 The data is:
 Hello!
 DONE
+
+Payton's PC as client and server
+paytonshafer@MacBook-Pro-4 src % java main/ClackClient User@127.0.0.1           
+Socket Established
+Hello
+The data is sent on Tue Nov 15 12:57:19 EST 2022.
+The data is:
+Hello
+DONE
+paytonshafer@MacBook-Pro-4 src % 
+
+paytonshafer@MacBook-Pro-4 src % java main/ClackServer
+Socket Established
+paytonshafer@MacBook-Pro-4 src % 
 

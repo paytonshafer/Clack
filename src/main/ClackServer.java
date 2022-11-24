@@ -70,8 +70,6 @@ public class ClackServer {
             System.err.println("Security Exception");
         }catch(IllegalArgumentException IAE){
             System.err.println("Illegal Argument for Port Number");
-        }catch(ClassNotFoundException CNF){
-            System.err.println("Class Not Found Exception");
         }catch(NullPointerException NPE){
             System.err.println("Null Pointer Exception");
         }
@@ -85,8 +83,7 @@ public class ClackServer {
      * @throws StreamCorruptedException
      * @throws OptionalDataException
      */
-    public void receiveData() throws IOException, InvalidClassException, ClassNotFoundException,
-                                     StreamCorruptedException, OptionalDataException{
+    public void receiveData(){
         try{
             dataToReceiveFromClient = (ClackData) inFromClient.readObject();
 

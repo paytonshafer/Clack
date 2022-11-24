@@ -122,14 +122,19 @@ public class ClackClient {
     /**
      * This function does different things based on the input but will read the data
      */
-    public void readClientData() throws IOException {
+    public void readClientData() {
         String input = inFromStd.next();
         if(input.equals("DONE")){
             closeConnection = true;
             dataToSendToServer = new MessageClackData(userName, input, KEY, ClackData.CONSTANT_LOGOUT);
         } else if (input.equals("SENDFILE")) {
-            dataToSendToServer = new FileClackData(userName, inFromStd.next(), ClackData.CONSTANT_SENDFILE);
-                ((FileClackData)dataToSendToServer).readFileContents(KEY);
+            try {
+                dataToSendToServer = new FileClackData(userName, inFromStd.next(), ClackData.CONSTANT_SENDFILE);
+                ((FileClackData) dataToSendToServer).readFileContents(KEY);
+            }catch(IOException ioe){
+                dataToSendToServer = null;
+                System.err.println("There was an error reading the file");
+            }
         } else if (input.equals("LISTUSERS")) {
             //nothing for now
         } else {

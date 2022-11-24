@@ -103,8 +103,9 @@ public class FileClackData extends ClackData {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
             while ((nextLine = bufferedReader.readLine()) != null) {
-                fileContents += super.encrypt(nextLine, key);
+                fileContents += nextLine;
             }
+            fileContents = super.encrypt(fileContents, key);
         } catch (FileNotFoundException fnfe) {
             System.err.println("File does not exist");
         } catch (IOException ioe) {
@@ -119,6 +120,7 @@ public class FileClackData extends ClackData {
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter(this.fileName));
             out.write(fileContents);
+            out.close();
         } catch (FileNotFoundException fnfe) {
             System.err.println("File not found!");
         } catch (IOException ioe) {
@@ -134,6 +136,7 @@ public class FileClackData extends ClackData {
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter(this.fileName));
             out.write(this.decrypt(this.fileContents, key));
+            out.close();
         } catch (FileNotFoundException fnfe) {
             System.err.println("File not found!");
         } catch (IOException ioe) {

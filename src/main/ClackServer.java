@@ -106,7 +106,7 @@ public class ClackServer {
      * @throws NotSerializableException
      * @throws IOException
      */
-    public void sendData() throws InvalidClassException, NotSerializableException, IOException {
+    public void sendData() {
         try{
             outToClient.writeObject(dataToSendToClient);
         }catch(InvalidClassException ICE){

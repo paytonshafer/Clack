@@ -31,7 +31,7 @@ public class ServerSideClientIO implements Runnable {
 
         while(!closeConnection) {
             receiveData();
-            server.Broadcast();
+            server.broadcast(dataToReceiveFromClient);
 
         }
         } catch (IOException e) {
@@ -39,13 +39,16 @@ public class ServerSideClientIO implements Runnable {
         }
     }
 
+    /**
+     * This function receives data from inFromClient
+     */
     public void receiveData() {
         try {
             dataToReceiveFromClient = (ClackData) inFromClient.readObject();
 
             if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT) {
                 closeConnection = true;
-                server.remove();
+                server.remove(this);
             }
 
         } catch (InvalidClassException ICE) {
@@ -57,6 +60,9 @@ public class ServerSideClientIO implements Runnable {
         }
     }
 
+    /**
+     * This function sends data to the client
+     */
     public void sendData(){
         try{
             outToClient.writeObject(dataToSendToClient);

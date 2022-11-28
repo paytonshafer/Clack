@@ -3,8 +3,10 @@ package main;
 import data.ClackData;
 import data.MessageClackData;
 import data.FileClackData;
+import main.ServerSideClientIO;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 /**
  * The ClackServer class represents the server that clients connect to
@@ -13,10 +15,7 @@ import java.net.*;
 public class ClackServer {
     private int port;
     private boolean closeConnection;
-    private ClackData dataToSendToClient;
-    private ClackData dataToReceiveFromClient;
-    private ObjectInputStream inFromClient;
-    private ObjectOutputStream outToClient;
+    private ArrayList<ServerSideClientIO> serverSideClientIOList;
     static final int DEFAULT_PORT_NUMBER = 1200;
 
     /**
@@ -29,10 +28,7 @@ public class ClackServer {
         }
         this.port = p;
         this.closeConnection = false;
-        this.dataToSendToClient = null;
-        this.dataToReceiveFromClient = null;
-        this.inFromClient = null;
-        this.outToClient = null;
+        serverSideClientIOList = null;
     }
 
     /**
@@ -48,21 +44,15 @@ public class ClackServer {
     public void start() {
         try {
             ServerSocket skt = new ServerSocket(port);
-            Socket clientSkt = skt.accept();
-            System.out.println("Socket Established");
-            inFromClient = new ObjectInputStream(clientSkt.getInputStream());
-            outToClient = new ObjectOutputStream(clientSkt.getOutputStream());
 
             while(!closeConnection){
-                receiveData();
-                dataToSendToClient = dataToReceiveFromClient;
-                sendData();
+                Socket clientSkt = skt.accept();
+                ServerSideClientIO client = new ServerSideClientIO(this, clientSkt);
+                serverSideClientIOList.add(client);
+                Thread thread = new Thread(client);
             }
 
             skt.close();
-            clientSkt.close();
-            inFromClient.close();
-            outToClient.close();
 
         }catch(IOException IOE) {
             System.err.println("IO Exception");
@@ -76,45 +66,26 @@ public class ClackServer {
     }
 
     /**
-     * This function receives data from inFromClient
-     * @throws IOException
-     * @throws InvalidClassException
-     * @throws ClassNotFoundException
-     * @throws StreamCorruptedException
-     * @throws OptionalDataException
+     * This functions broadcasts the data to all current clients
+     * @param dataToBroadcastToClients is a ClackData object of data to send to call clients
      */
-    public void receiveData(){
-        try{
-            dataToReceiveFromClient = (ClackData) inFromClient.readObject();
-
-            if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT) {
-                closeConnection = true;
-            }
-
-        }catch(InvalidClassException ICE){
-            System.err.println("Invalid Class Exception");
-        }catch(ClassNotFoundException CNF){
-            System.err.println("Class Not Found Exception");
-        }catch(IOException IOE) {
-            System.err.println("IO Exception");
+    public synchronized void broadcast(ClackData dataToBroadcastToClients){
+        for(ServerSideClientIO client : serverSideClientIOList){
+            client.setDataToSendToClient(dataToBroadcastToClients);
+            client.sendData();
         }
     }
 
     /**
-     * This function sends data to the client with outToClient
-     * @throws InvalidClassException
-     * @throws NotSerializableException
-     * @throws IOException
+     * This function will remove a client from the client list when their connection is ended
+     * @param client is a ServerSideClientIO object to be removed from the list of current clients
      */
-    public void sendData() {
-        try{
-            outToClient.writeObject(dataToSendToClient);
-        }catch(InvalidClassException ICE){
-            System.err.println("Invalid Class Exception");
-        }catch(NotSerializableException NSE){
-            System.err.println("Not Serializable Exception");
-        }catch(IOException IOE){
-            System.err.println("IO Exception");
+    public void remove(ServerSideClientIO client){
+        int index = serverSideClientIOList.indexOf(client);
+        if (index == -1) {
+            System.out.println("This client does not exist and cant be removed.");
+        } else {
+            serverSideClientIOList.remove(index);
         }
     }
 
@@ -146,9 +117,7 @@ public class ClackServer {
      */
     public String toString(){
         return "The current port number is " + this.port +
-                ". The current status of the connection being closed is " + this.closeConnection +
-                 ". The data sent to the client is:\n" + this.dataToSendToClient +
-                  "\nThe data received from the client is:\n" + this.dataToReceiveFromClient + ".";
+                ". The current status of the connection being closed is " + this.closeConnection + ".";
     }
 
     /**

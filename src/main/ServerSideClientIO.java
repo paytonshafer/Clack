@@ -49,13 +49,16 @@ public class ServerSideClientIO implements Runnable {
      * This function receives data from inFromClient
      */
     public void receiveData() {
+        if(closeConnection){
+            server.remove(this);
+            return;
+        }
+
         try {
+
             dataToReceiveFromClient = (ClackData) inFromClient.readObject();
 
-            if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT) {
-                closeConnection = true;
-                server.remove(this);
-            } else if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LISTUSERS) {
+            if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LISTUSERS) {
                   outToClient.writeObject(new MessageClackData ("Server", server.getList(), 2));
             }
 

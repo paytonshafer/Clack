@@ -90,6 +90,10 @@ public class ClackClient {
             inFromServer = new ObjectInputStream(skt.getInputStream());
             inFromStd = new Scanner(System.in);
 
+            ClientSideServerListener listener = new ClientSideServerListener(this);
+            Thread listenerThread = new Thread(listener);
+            listenerThread.start();
+
             while (!closeConnection) {
 
                 this.readClientData();
@@ -196,6 +200,8 @@ public class ClackClient {
      * @return This returns the clients port
      */
     public int getPort(){return port;}
+
+    public boolean getCloseConnection() {return closeConnection;}
 
     /**
      * This is a function to override hash code for the ClackClient object

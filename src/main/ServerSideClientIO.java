@@ -37,6 +37,9 @@ public class ServerSideClientIO implements Runnable {
             server.broadcast(dataToReceiveFromClient);
 
         }
+
+        clientSocket.close();
+        server.remove(this);
         } catch (IOException e) {
             System.err.println("IO Exception");
         }

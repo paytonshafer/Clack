@@ -28,7 +28,7 @@ public class ClackServer {
         }
         this.port = p;
         this.closeConnection = false;
-        serverSideClientIOList = null;
+        this.serverSideClientIOList = new ArrayList<ServerSideClientIO>();
     }
 
     /**
@@ -85,12 +85,7 @@ public class ClackServer {
      * @param client is a ServerSideClientIO object to be removed from the list of current clients
      */
     public void remove(ServerSideClientIO client){
-        int index = serverSideClientIOList.indexOf(client);
-        if (index == -1) {
-            System.out.println("This client does not exist and cant be removed.");
-        } else {
-            serverSideClientIOList.remove(index);
-        }
+        serverSideClientIOList.remove(client);
     }
 
     /**

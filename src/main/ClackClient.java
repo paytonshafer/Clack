@@ -98,6 +98,7 @@ public class ClackClient {
             while (!closeConnection) {
 
                 this.readClientData();
+                this.sendData();
                 if (closeConnection) break;
                 this.printData();
 

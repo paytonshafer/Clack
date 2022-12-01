@@ -47,7 +47,8 @@ public class ClackServer {
 
             while(!closeConnection){
                 Socket clientSkt = skt.accept();
-                String userName = new BufferedReader(new InputStreamReader(clientSkt.getInputStream())).readLine();
+                String userName = "bill";
+                //String userName = new BufferedReader(new InputStreamReader(clientSkt.getInputStream())).readLine();
                 System.out.println(userName);
                 ServerSideClientIO client = new ServerSideClientIO(this, clientSkt, userName);
                 System.out.println(client.toString());

@@ -86,7 +86,7 @@ public class ClackClient {
 
             Socket skt = new Socket(hostName, port);
             System.out.println("Socket Established");
-            new PrintWriter(skt.getOutputStream(), true).println(userName);
+            //new PrintWriter(skt.getOutputStream(), true).println(userName);
             outToServer = new ObjectOutputStream(skt.getOutputStream());
             inFromServer = new ObjectInputStream(skt.getInputStream());
             inFromStd = new Scanner(System.in);
@@ -99,9 +99,6 @@ public class ClackClient {
 
                 this.readClientData();
                 this.sendData();
-                if (closeConnection) break;
-                this.printData();
-
             }
 
 
@@ -119,7 +116,7 @@ public class ClackClient {
         }catch(IllegalArgumentException IAE){
             System.err.println("Illegal Argument for Port Number");
         }catch(NullPointerException NPE){
-            System.err.println("Null Pointer Exception");
+            System.err.println("Null Pointer Exception HERE");
         }
     }
 
@@ -155,7 +152,7 @@ public class ClackClient {
         try {
             outToServer.writeObject(dataToSendToServer);
         } catch (IOException e) {
-            System.err.println("IO Exception");
+            System.err.println("IO Exception: " + e);
         } catch (NullPointerException e) {
             System.err.println("Null Pointer Exception");
         }
@@ -167,8 +164,10 @@ public class ClackClient {
     public void receiveData(){
         try {
             dataToReceiveFromServer = (ClackData) inFromServer.readObject();
+        } catch (java.net.SocketException e) {
+            System.out.println("Socket Closed");
         } catch (IOException e) {
-            System.err.println("IO Exception");
+            System.err.println("IOException: " + e);
         } catch (ClassNotFoundException e) {
             System.err.println("Class Not Found");
         } catch (NullPointerException e) {

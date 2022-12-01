@@ -1,6 +1,7 @@
 package main;
 
 import data.ClackData;
+import data.MessageClackData;
 
 import java.io.*;
 import java.net.*;
@@ -13,8 +14,9 @@ public class ServerSideClientIO implements Runnable {
     private ObjectOutputStream outToClient;
     private ClackServer server;
     private Socket clientSocket;
+    private String userName;
 
-    public ServerSideClientIO(ClackServer server, Socket clientSocket){
+    public ServerSideClientIO(ClackServer server, Socket clientSocket, String userName){
         this.server = server;
         this.clientSocket = clientSocket;
         this.closeConnection = false;
@@ -22,6 +24,7 @@ public class ServerSideClientIO implements Runnable {
         this.dataToSendToClient = null;
         this.inFromClient = null;
         this.outToClient = null;
+        this.userName = userName;
     }
 
     public void run(){
@@ -49,6 +52,8 @@ public class ServerSideClientIO implements Runnable {
             if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT) {
                 closeConnection = true;
                 server.remove(this);
+            } else if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LISTUSERS) {
+                  outToClient.writeObject(new MessageClackData ("Server", server.getList(), 2));
             }
 
         } catch (InvalidClassException ICE) {
@@ -77,5 +82,13 @@ public class ServerSideClientIO implements Runnable {
 
     public void setDataToSendToClient(ClackData dataToSendToClient) {
         this.dataToSendToClient = dataToSendToClient;
+    }
+
+    /**
+     * Getter function for variable userName.
+     * @return
+     */
+    public String getUserName() {
+        return userName;
     }
 }

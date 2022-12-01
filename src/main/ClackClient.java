@@ -86,6 +86,7 @@ public class ClackClient {
 
             Socket skt = new Socket(hostName, port);
             System.out.println("Socket Established");
+            new PrintWriter(skt.getOutputStream(), true).println(userName);
             outToServer = new ObjectOutputStream(skt.getOutputStream());
             inFromServer = new ObjectInputStream(skt.getInputStream());
             inFromStd = new Scanner(System.in);
@@ -97,8 +98,6 @@ public class ClackClient {
             while (!closeConnection) {
 
                 this.readClientData();
-                this.sendData();
-                this.receiveData();
                 if (closeConnection) break;
                 this.printData();
 
@@ -140,7 +139,8 @@ public class ClackClient {
                 System.err.println("There was an error reading the file");
             }
         } else if (input.equals("LISTUSERS")) {
-            //nothing for now
+            dataToSendToServer = new MessageClackData(userName, input, KEY, ClackData.CONSTANT_LISTUSERS);
+
         } else {
             String message = input + inFromStd.nextLine();
             dataToSendToServer = new MessageClackData(userName, message, KEY, ClackData.CONSTANT_SENDMESSAGE);

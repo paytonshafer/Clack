@@ -47,9 +47,13 @@ public class ClackServer {
 
             while(!closeConnection){
                 Socket clientSkt = skt.accept();
-                ServerSideClientIO client = new ServerSideClientIO(this, clientSkt);
+                String userName = new BufferedReader(new InputStreamReader(clientSkt.getInputStream())).readLine();
+                System.out.println(userName);
+                ServerSideClientIO client = new ServerSideClientIO(this, clientSkt, userName);
+                System.out.println(client.toString());
                 serverSideClientIOList.add(client);
                 Thread thread = new Thread(client);
+                thread.start();
             }
 
             skt.close();
@@ -66,7 +70,7 @@ public class ClackServer {
     }
 
     /**
-     * This functions broadcasts the data to all current clients
+     * This function broadcasts the data to all current clients
      * @param dataToBroadcastToClients is a ClackData object of data to send to call clients
      */
     public synchronized void broadcast(ClackData dataToBroadcastToClients){
@@ -94,6 +98,21 @@ public class ClackServer {
      * @return This returns the port number
      */
     public int getPort() {return port;}
+
+    /**
+     * This function returns a formatted string listing all every clients Username.
+     * @return
+     */
+    public String getList() {
+
+        String list = null;
+
+        for (ServerSideClientIO client : serverSideClientIOList) {
+                list = client.getUserName() + "\n";
+        }
+
+        return list;
+    }
 
     /**
      * This is a function to override hash code for the ClackServer object

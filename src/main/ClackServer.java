@@ -60,7 +60,7 @@ public class ClackServer {
             skt.close();
 
         }catch(IOException IOE) {
-            System.err.println("IO Exception");
+            System.err.println("IO Exception in start() in ClarkServer");
         }catch (SecurityException SE){
             System.err.println("Security Exception");
         }catch(IllegalArgumentException IAE){

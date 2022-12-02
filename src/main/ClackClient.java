@@ -179,7 +179,7 @@ public class ClackClient {
      * This functions prints the data to the standard output
      */
     public void printData(){
-        System.out.println("The data was sent by " + this.userName);
+        System.out.println("The data was sent by " + dataToReceiveFromServer.getUserName());
         System.out.println("The data is sent on " + dataToReceiveFromServer.getDate() + ".");
         System.out.println("The data is:\n" + dataToReceiveFromServer.getData(KEY));
     }

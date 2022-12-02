@@ -75,10 +75,16 @@ public class ClackServer {
      * @param dataToBroadcastToClients is a ClackData object of data to send to call clients
      */
     public synchronized void broadcast(ClackData dataToBroadcastToClients){
+        try {
+            wait();
+        }catch(InterruptedException ie){
+            System.err.println("Interrupted Exception");
+        }
         for(ServerSideClientIO client : serverSideClientIOList){
             client.setDataToSendToClient(dataToBroadcastToClients);
             client.sendData();
         }
+        notifyAll();
     }
 
     /**
@@ -86,7 +92,13 @@ public class ClackServer {
      * @param client is a ServerSideClientIO object to be removed from the list of current clients
      */
     public void remove(ServerSideClientIO client){
+        try {
+            wait();
+        }catch(InterruptedException ie){
+            System.err.println("Interrupted Exception");
+        }
         serverSideClientIOList.remove(client);
+        notifyAll();
     }
 
     /**

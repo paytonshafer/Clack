@@ -35,7 +35,6 @@ public class ServerSideClientIO implements Runnable {
         while(!closeConnection) {
             receiveData();
             server.broadcast(dataToReceiveFromClient);
-
         }
 
         clientSocket.close();

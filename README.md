@@ -65,6 +65,22 @@ Socket Closed
 
 Process finished with exit code 0
 
+Paytons:
+Socket Established
+The data was sent by ryan
+The data is sent on Sat Dec 03 16:02:53 EST 2022.
+The data is:
+Hello!
+SENDFILE hello.txt
+The data was sent by payton
+The data is sent on Sat Dec 03 16:03:03 EST 2022.
+The data is:
+Hello!
+DONE
+Socket Closed
+
+Process finished with exit code 0
+
 Ryan's is Server and Client1, Payton has Client2:
 Paytons:
 Socket Established

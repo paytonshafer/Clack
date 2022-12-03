@@ -18,7 +18,7 @@ which is retrieved from the new function getList(). The getList function creates
 The last code implemented, is on the first message received from a new client, the server fills in the userName instance variable with the username attached to the messageData. This is how the getList function is able to iterate through the client list and get all users' names. 
 
 
-###Testing
+### Testing
 
 This is the output for testClackClient when sending a message, sending a file, and finally using the keyword DONE to terminate the session.
 

@@ -86,7 +86,6 @@ public class ClackClient {
 
             Socket skt = new Socket(hostName, port);
             System.out.println("Socket Established");
-            //new PrintWriter(skt.getOutputStream(), true).println(userName);
             outToServer = new ObjectOutputStream(skt.getOutputStream());
             inFromServer = new ObjectInputStream(skt.getInputStream());
             inFromStd = new Scanner(System.in);

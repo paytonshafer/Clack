@@ -14,6 +14,12 @@ Explain why the broadcast() and remove() methods are synchronized.
 They are syncronized since they both work with the same reasources, the list of clients. So they must be syncronized so they dont try to do things at the same time.
 
 Discuss all new methods and new code in existing methods that you wrote to handle LISTUSERS.
+The first new code implemented, was the handling of a listusers message in the readData function for the client and the receiveData function for the server.
+For the readData function, an empty message is sent to the server with the constant type LISTUSERS. As for the receiveData function on the server end,
+a messageClackData object is immediately made and sent back to the user within the receiveData function. The message within the object is the user list,
+which is retrieved from the new function getList(). The getList function creates the list of users and returns it as a String for the message. 
+The last code implemented, is on the first message received from a new client, the server fills in the userName instance variable with the username attached
+to the messageData. This is how the getList function is able to iterate through the client list and get all users' names. 
 
 
 ###Testing

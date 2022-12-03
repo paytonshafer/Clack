@@ -47,11 +47,7 @@ public class ClackServer {
 
             while(!closeConnection){
                 Socket clientSkt = skt.accept();
-                String userName = "bill";
-                //String userName = new BufferedReader(new InputStreamReader(clientSkt.getInputStream())).readLine();
-                System.out.println(userName);
-                ServerSideClientIO client = new ServerSideClientIO(this, clientSkt, userName);
-                System.out.println(client.toString());
+                ServerSideClientIO client = new ServerSideClientIO(this, clientSkt);
                 serverSideClientIOList.add(client);
                 Thread thread = new Thread(client);
                 thread.start();
@@ -101,10 +97,14 @@ public class ClackServer {
      */
     public String getList() {
 
-        String list = null;
+        String list = "\nUSER LIST\n\n";
+        int i = 0;
 
         for (ServerSideClientIO client : serverSideClientIOList) {
-                list = client.getUserName() + "\n";
+
+            if (client.getUserName().isEmpty()) continue;
+            i += 1;
+            list = list + i + ". " + client.getUserName() + "\n";
         }
 
         return list;

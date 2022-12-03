@@ -14,9 +14,10 @@ public class ServerSideClientIO implements Runnable {
     private ObjectOutputStream outToClient;
     private ClackServer server;
     private Socket clientSocket;
-    private String userName;
+    private String userName = "";
+    static final String KEY = "xicvpowcndsiufycn";
 
-    public ServerSideClientIO(ClackServer server, Socket clientSocket, String userName){
+    public ServerSideClientIO(ClackServer server, Socket clientSocket){
         this.server = server;
         this.clientSocket = clientSocket;
         this.closeConnection = false;
@@ -24,7 +25,6 @@ public class ServerSideClientIO implements Runnable {
         this.dataToSendToClient = null;
         this.inFromClient = null;
         this.outToClient = null;
-        this.userName = userName;
     }
 
     public void run(){
@@ -34,7 +34,8 @@ public class ServerSideClientIO implements Runnable {
 
         while(!closeConnection) {
             receiveData();
-            if (closeConnection){break;}
+            if (closeConnection)break;
+            if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LISTUSERS) continue;
             server.broadcast(dataToReceiveFromClient);
         }
 
@@ -52,13 +53,16 @@ public class ServerSideClientIO implements Runnable {
         try {
 
             dataToReceiveFromClient = (ClackData) inFromClient.readObject();
+
+            if (this.userName.isEmpty()) this.userName = dataToReceiveFromClient.getUserName();
+
             if(dataToReceiveFromClient.getType() == ClackData.CONSTANT_LOGOUT){
                 closeConnection = true;
                 server.remove(this);
                 return;
             }
             if (dataToReceiveFromClient.getType() == ClackData.CONSTANT_LISTUSERS) {
-                  outToClient.writeObject(new MessageClackData ("Server", server.getList(), 2));
+                  outToClient.writeObject(new MessageClackData ("Server", server.getList(), KEY, 2));
             }
 
         } catch (InvalidClassException ICE) {

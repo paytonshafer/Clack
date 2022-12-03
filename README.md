@@ -29,6 +29,42 @@ Output:
 Payton's is Server and Client1, Ryan has Client2:
 
 
+Ryan's Client output:
+
+Socket Established
+Hello!
+The data was sent by ryan
+The data is sent on Sat Dec 03 16:02:53 EST 2022.
+The data is:
+Hello!
+The data was sent by payton
+The data is sent on Sat Dec 03 16:03:03 EST 2022.
+The data is:
+Hello!
+LISTUSERS
+The data was sent by Server
+The data is sent on Sat Dec 03 16:03:09 EST 2022.
+The data is:
+
+USER LIST
+
+1. ryan
+2. payton
+
+LISTUSERS
+The data was sent by Server
+The data is sent on Sat Dec 03 16:03:19 EST 2022.
+The data is:
+
+USER LIST
+
+1. ryan
+
+DONE
+Socket Closed
+
+Process finished with exit code 0
+
 Ryan's is Server and Client1, Payton has Client2:
 Paytons:
 Socket Established
@@ -64,3 +100,21 @@ DONE
 Socket Closed
 
 Process finished with exit code 0
+
+Ryan's Client output:
+
+Socket Established
+The data was sent by payton
+The data is sent on Sat Dec 03 16:00:20 EST 2022.
+The data is:
+Hello
+Hey
+The data was sent by user
+The data is sent on Sat Dec 03 16:00:22 EST 2022.
+The data is:
+Hey
+DONE
+Socket Closed
+
+Process finished with exit code 0
+

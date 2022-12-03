@@ -30,3 +30,37 @@ Payton's is Server and Client1, Ryan has Client2:
 
 
 Ryan's is Server and Client1, Payton has Client2:
+Paytons:
+Socket Established
+Hello
+The data was sent by payton
+The data is sent on Sat Dec 03 16:00:20 EST 2022.
+The data is:
+Hello
+The data was sent by user
+The data is sent on Sat Dec 03 16:00:22 EST 2022.
+The data is:
+Hey
+LISTUSERS
+The data was sent by Server
+The data is sent on Sat Dec 03 16:00:32 EST 2022.
+The data is:
+
+USER LIST
+
+1. user
+2. payton
+
+LISTUSERS
+The data was sent by Server
+The data is sent on Sat Dec 03 16:00:47 EST 2022.
+The data is:
+
+USER LIST
+
+1. payton
+
+DONE
+Socket Closed
+
+Process finished with exit code 0

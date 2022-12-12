@@ -81,7 +81,7 @@ public class ClackServer {
      * This function will remove a client from the client list when their connection is ended
      * @param client is a ServerSideClientIO object to be removed from the list of current clients
      */
-    public void remove(ServerSideClientIO client){
+    public synchronized void remove(ServerSideClientIO client){
         serverSideClientIOList.remove(client);
     }
 

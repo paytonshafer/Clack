@@ -5,5 +5,5 @@ each client can connect to the server and then talk to all other clients through
 There is also a functionality that allows for the client to ask for a list of all connected clients. The messages are sent after being encrypted using the 
 Vigenère cipher then decrypted when the clients receive the message.
 
-#Authors
+# Authors
 Payton Shafer and Ryan Quirk
